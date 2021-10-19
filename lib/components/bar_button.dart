@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lettutor/styles/button_styles.dart';
+import 'package:lettutor/styles/consts.dart';
 
 enum BarButtonStyle { primary, secondary, inactive }
 
@@ -9,7 +10,7 @@ class BarButton extends StatelessWidget {
     Key? key,
     required this.child,
     this.onPressed,
-    this.cornerRadius = 0,
+    this.cornerRadius = CornerRadiusValue.medium,
     this.width,
     this.height,
     this.style = BarButtonStyle.primary,

@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/auth_screen_app_bar.dart';
 import 'package:lettutor/components/auth_screen_text_field.dart';
+import 'package:lettutor/screens/auth_screen/forgot_password_screen.dart';
 import 'package:lettutor/screens/auth_screen/sign_up_screen.dart';
 import 'package:lettutor/styles/button_styles.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
+import 'package:lettutor/extensions/navigate_extensions.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -56,7 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       SizedBox(height: SpacingValue.small),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: forgotPassword,
                         child: Text('Forgot password?'),
                         style: ButtonStyles.textButtonStyle(),
                       ),
@@ -156,15 +158,11 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void forgotPassword() {
-    print('sign_in_screen.dart - forgotPassword');
+    navigate(ForgotPasswordScreen());
   }
 
   void signUp() {
-    Navigator.of(context).push(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => SignUpScreen(),
-        transitionDuration: Duration.zero,
-      ),
-    );
+    navigateWithoutAnimation(SignUpScreen());
   }
 }
+

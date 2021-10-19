@@ -17,6 +17,14 @@ class TextStyles {
   static const h5SemiBold = TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600);
   static const h6SemiBold = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600);
 
+  //headline bold
+  static const h1Bold = TextStyle(fontSize: 64.0, fontWeight: FontWeight.w700);
+  static const h2Bold = TextStyle(fontSize: 48.0, fontWeight: FontWeight.w700);
+  static const h3Bold = TextStyle(fontSize: 40.0, fontWeight: FontWeight.w700);
+  static const h4Bold = TextStyle(fontSize: 32.0, fontWeight: FontWeight.w700);
+  static const h5Bold = TextStyle(fontSize: 24.0, fontWeight: FontWeight.w700);
+  static const h6Bold = TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700);
+
   //subtitle regular
   static const subtitle1Regular = TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400);
   static const subtitle2Regular = TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400);
