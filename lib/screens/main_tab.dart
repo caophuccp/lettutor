@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/screens/home_screen/home_screen.dart';
 
 /// This is the stateful widget that the main application instantiates.
 class MainTab extends StatefulWidget {
@@ -12,16 +13,12 @@ class MainTab extends StatefulWidget {
 class _MainTabState extends State<MainTab> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Tab Index 0',
-    ),
+  static List<Widget> _widgetOptions = <Widget>[
+    HomeScreen(),
     Text(
       'Tab Index 1',
     ),
-    Text(
-      'Tab Index 2',
-    ),
+    HomeScreen(),
     Text(
       'Tab Index 3',
     ),
@@ -39,9 +36,7 @@ class _MainTabState extends State<MainTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
