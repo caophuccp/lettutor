@@ -7,6 +7,7 @@ import 'package:lettutor/components/auth_screen_app_bar.dart';
 import 'package:lettutor/components/auth_screen_text_field.dart';
 import 'package:lettutor/screens/auth_screen/forgot_password_screen.dart';
 import 'package:lettutor/screens/auth_screen/sign_up_screen.dart';
+import 'package:lettutor/screens/main_tab.dart';
 import 'package:lettutor/styles/button_styles.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
@@ -153,8 +154,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void signIn() {
     print('sign_in_screen.dart - login');
-    print(
-        'email: ${emailController.text} password: ${passwordController.text}');
+    print('email: ${emailController.text} password: ${passwordController.text}');
+    pushReplacementWithoutAnimation(MainTab());
   }
 
   void forgotPassword() {
