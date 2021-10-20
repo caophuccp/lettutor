@@ -26,11 +26,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: SafeArea(
           bottom: false,
           child: Container(
-            padding: EdgeInsets.all(PaddingValue.extraLarge),
+            padding: EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                NavigationBackButton(),
+                NavigationBackButton(title: 'Sign in',),
                 SizedBox(height: PaddingValue.extraLarge),
                 Text(
                   'Fogot password',

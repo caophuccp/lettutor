@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/screens/home_screen/home_screen.dart';
+import 'package:lettutor/screens/settings_screen/settings_screen.dart';
 import 'package:lettutor/screens/tutors_screen/tutors_screen.dart';
 
 /// This is the stateful widget that the main application instantiates.
@@ -27,11 +28,7 @@ class _MainTabState extends State<MainTab> {
       ),
     ),
     TutorsScreen(),
-    Center(
-      child: Text(
-        'Tab Index 4',
-      ),
-    ),
+    SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {

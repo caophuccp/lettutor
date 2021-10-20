@@ -5,7 +5,7 @@ class UserAvatar extends StatelessWidget {
   const UserAvatar({
     Key? key,
     required this.imageUrl,
-    this.size = 64
+    this.size = 64,
   }) : super(key: key);
   final String imageUrl;
   final double size;

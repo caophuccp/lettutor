@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import 'package:lettutor/components/bar_button.dart';
+import 'package:lettutor/components/settings_screen/setting_item_button.dart';
+import 'package:lettutor/components/settings_screen/user_profile_setting_button.dart';
+import 'package:lettutor/styles/consts.dart';
+import 'package:lettutor/extensions/navigate_extensions.dart';
+
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final settings = [
+    {
+      'icon': Icons.feedback_outlined,
+      'title': 'View Feedbacks',
+    }
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(PaddingValue.extraLarge),
+            child: Column(
+              children: [
+                UserProfileSettingButton(
+                  userAvatar: 'https://dev.api.lettutor.com/avatar/3b994227-2695-44d4-b7ff-333b090a45d4avatar1632047402615.jpg',
+                  onTap: editProfile,
+                ),
+                SizedBox(
+                  height: PaddingValue.large,
+                ),
+                SettingItemButton(
+                  title: 'View Feedbacks',
+                  icon: Icons.feedback_outlined,
+                  onTap: viewFeedbacks,
+                ),
+                SettingItemButton(
+                  title: 'Booking History',
+                  icon: Icons.show_chart_rounded,
+                  onTap: viewBookingHistory,
+                ),
+                SettingItemButton(
+                  title: 'Sesson History',
+                  icon: Icons.history_rounded,
+                  onTap: viewSessonHistory,
+                ),
+                SettingItemButton(
+                  title: 'Advanced Settings',
+                  icon: Icons.settings_applications_outlined,
+                  onTap: viewAdvancedSettings,
+                ),
+                SettingItemButton(
+                  title: 'Become a tutor',
+                  icon: Icons.speaker_outlined,
+                  onTap: becomeTutor,
+                ),
+
+                SettingItemButton(
+                  title: 'Sign out',
+                  icon: Icons.logout,
+                  onTap: becomeTutor,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void editProfile() {
+    print('settings_screen.dart - editProfile');
+  }
+
+  void viewFeedbacks() {
+    print('settings_screen.dart - viewFeedbacks');
+  }
+
+  void viewBookingHistory() {
+    print('settings_screen.dart - viewBookingHistory');
+  }
+
+  void viewSessonHistory() {
+    print('settings_screen.dart - viewSessonHistory');
+  }
+
+  void viewAdvancedSettings() {
+    print('settings_screen.dart - viewAdvancedSettings');
+  }
+
+  void becomeTutor() {
+    print('settings_screen.dart - becomeTutor');
+  }
+
+  void signOut(){
+    print('settings_screen.dart - becomeTutor');
+  }
+}

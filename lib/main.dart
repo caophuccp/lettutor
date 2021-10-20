@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         backgroundColor: Colors.white,
         scaffoldBackgroundColor: Colors.white,
+        // splashColor: Colors.grey[100],
+        // highlightColor: Colors.grey[100],
         cardColor: Colors.white,
         cardTheme: CardTheme(
           color: Colors.white,
@@ -25,12 +27,15 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Colors.grey,
           selectedItemColor: Colors.blue,
         ),
+        
       ),
       darkTheme: ThemeData(
         shadowColor: Colors.grey.withOpacity(0.05),
         brightness: Brightness.dark,
         primaryColor: Colors.white,
         scaffoldBackgroundColor: Colors.grey[850],
+        // splashColor: Colors.grey[700],
+        // highlightColor: Colors.grey[700],
         cardTheme: CardTheme(
           color: Colors.grey[800],
           shadowColor: Colors.grey.withOpacity(0.05),
@@ -40,7 +45,7 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.white,
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       home: MainScreen(),
     );
   }

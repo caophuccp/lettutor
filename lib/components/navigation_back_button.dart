@@ -4,7 +4,10 @@ import 'package:lettutor/styles/text_styles.dart';
 class NavigationBackButton extends StatefulWidget {
   const NavigationBackButton({
     Key? key,
+    this.title = 'Back',
   }) : super(key: key);
+  
+  final String title;
 
   @override
   _NavigationBackButtonState createState() => _NavigationBackButtonState();
@@ -18,7 +21,7 @@ class _NavigationBackButtonState extends State<NavigationBackButton> {
       child: Row(
         children: [
           Icon(Icons.arrow_back_ios, size: 16,),
-          Text('Sign in', style: TextStyles.subtitle2SemiBold,),
+          Text(widget.title, style: TextStyles.subtitle2SemiBold,),
         ],
       ),
     );

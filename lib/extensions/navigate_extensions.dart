@@ -34,7 +34,7 @@ extension StateExtensions on State<StatefulWidget> {
     );
   }
 
-    void pushReplacementWithoutAnimation(Widget newScreen) {
+  void pushReplacementWithoutAnimation(Widget newScreen) {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
         pageBuilder: (context, animation1, animation2) => newScreen,
