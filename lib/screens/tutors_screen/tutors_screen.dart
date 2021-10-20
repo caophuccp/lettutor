@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/speciality_view.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
+import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
+import 'package:lettutor/extensions/navigate_extensions.dart';
 
 class TutorsScreen extends StatefulWidget {
   @override
@@ -97,6 +99,7 @@ class _TutorsScreenState extends State<TutorsScreen> {
                 padding: EdgeInsets.only(bottom: PaddingValue.extraLarge),
                 itemCount: 10,
                 itemBuilder: (context, index) => TutorCardView(
+                  onTap: viewTutorProfile,
                   margin: EdgeInsets.fromLTRB(
                     PaddingValue.extraLarge,
                     PaddingValue.extraLarge,
@@ -115,5 +118,9 @@ class _TutorsScreenState extends State<TutorsScreen> {
         ),
       ),
     );
+  }
+
+  void viewTutorProfile() {
+    navigate(TutorProfileScreen());
   }
 }

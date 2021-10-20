@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
           unselectedItemColor: Colors.grey,
           selectedItemColor: Colors.blue,
         ),
-        
       ),
       darkTheme: ThemeData(
         shadowColor: Colors.grey.withOpacity(0.05),
