@@ -49,10 +49,10 @@ class _TutorsScreenState extends State<TutorsScreen> {
             Container(
               padding: EdgeInsets.only(bottom: PaddingValue.large),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Theme.of(context).shadowColor,
                     blurRadius: 4,
                     offset: Offset(0, 4), // changes position of shadow
                   ),

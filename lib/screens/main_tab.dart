@@ -16,15 +16,21 @@ class _MainTabState extends State<MainTab> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    Text(
-      'Tab Index 1',
+    Center(
+      child: Text(
+        'Tab Index 1',
+      ),
     ),
-    Text(
-      'Tab Index 3',
+    Center(
+      child: Text(
+        'Tab Index 2',
+      ),
     ),
     TutorsScreen(),
-    Text(
-      'Tab Index 4',
+    Center(
+      child: Text(
+        'Tab Index 4',
+      ),
     ),
   ];
 
@@ -62,8 +68,6 @@ class _MainTabState extends State<MainTab> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         showSelectedLabels: true,
         onTap: _onItemTapped,

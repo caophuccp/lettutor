@@ -21,8 +21,8 @@ class SpecialityView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = isActive ? Colors.blue[50] : Colors.grey[200];
-    final foregroundColor = isActive ? Colors.blue : Colors.grey[700];
+    final backgroundColor = isActive ? Colors.blue[100] : Colors.grey[200];
+    final foregroundColor = isActive ? Colors.blue[900] : Colors.grey[700];
     final overlayColor = isActive ? Colors.blue[100] : Colors.grey[300];
     return OutlinedButton(
       onPressed: onTap,

@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 vertical: PaddingValue.medium,
               ),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.05),

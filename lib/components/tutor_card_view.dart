@@ -31,14 +31,14 @@ class TutorCardView extends StatelessWidget {
       margin: margin,
       padding: EdgeInsets.all(PaddingValue.large),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(CornerRadiusValue.medium),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            spreadRadius: 5,
+            color: Theme.of(context).cardTheme.shadowColor ?? Colors.transparent,
+            spreadRadius: 4,
             blurRadius: 10,
-            offset: Offset(0, 3), // changes position of shadow
+            offset: Offset(0, 4),
           ),
         ],
       ),
