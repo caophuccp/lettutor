@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/styles/text_styles.dart';
 
 class ButtonStyles {
+  ButtonStyles._();
+  
   static MaterialStateProperty<Color?> color(
       Color? defaultColor, Color? disabledColor) {
     return MaterialStateProperty.resolveWith<Color?>(

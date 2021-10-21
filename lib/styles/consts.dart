@@ -1,4 +1,6 @@
 class SpacingValue {
+  SpacingValue._();
+  
   static const small = 4.0;
   static const medium = 8.0;
   static const large = 16.0;
@@ -6,12 +8,16 @@ class SpacingValue {
 }
 
 class CornerRadiusValue {
+  CornerRadiusValue._();
+
   static const small = 4.0;
   static const medium = 8.0;
   static const large = 16.0;
 }
 
 class PaddingValue {
+  PaddingValue._();
+  
   static const small = 4.0;
   static const medium = 8.0;
   static const large = 16.0;

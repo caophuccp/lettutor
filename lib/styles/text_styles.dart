@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TextStyles {
+  TextStyles._();
+  
   //headline regular
   static const h1Regular = TextStyle(fontSize: 64.0, fontWeight: FontWeight.w400);
   static const h2Regular = TextStyle(fontSize: 48.0, fontWeight: FontWeight.w400);
