@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:lettutor/components/auth_screen_text_field.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/box_editor.dart';
 import 'package:lettutor/components/box_info.dart';
 import 'package:lettutor/components/dialog_title.dart';
 import 'package:lettutor/components/row_info.dart';
 import 'package:lettutor/styles/consts.dart';
-import 'package:lettutor/styles/text_styles.dart';
 
 class BookingDetailsDialog extends StatefulWidget {
   const BookingDetailsDialog({Key? key}) : super(key: key);

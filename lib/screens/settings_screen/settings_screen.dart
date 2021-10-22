@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/settings_screen/setting_item_button.dart';
 import 'package:lettutor/components/settings_screen/user_profile_setting_button.dart';
+import 'package:lettutor/screens/settings_screen/user_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/extensions/navigate_extensions.dart';
 
@@ -75,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void editProfile() {
-    print('settings_screen.dart - editProfile');
+    navigate(UserProfileScreen());
   }
 
   void viewFeedbacks() {
