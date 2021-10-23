@@ -47,7 +47,11 @@ class _UserInfoComboBoxState extends State<UserInfoComboBox> {
               Expanded(
                 child: headerWidget(),
               ),
-              Icon(Icons.arrow_drop_down_rounded),
+              Icon(
+                isExpanded
+                    ? Icons.arrow_drop_down_rounded
+                    : Icons.arrow_left_rounded,
+              ),
               SizedBox(
                 width: 16,
               ),
@@ -59,8 +63,8 @@ class _UserInfoComboBoxState extends State<UserInfoComboBox> {
           child: Container(
             child: widget.items.length > 5
                 ? Container(
-                  height: 200,
-                  child: SingleChildScrollView(
+                    height: 200,
+                    child: SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
                               Divider(
@@ -71,7 +75,7 @@ class _UserInfoComboBoxState extends State<UserInfoComboBox> {
                             _itemsWidget(context),
                       ),
                     ),
-                )
+                  )
                 : Column(
                     children: <Widget>[
                           Divider(

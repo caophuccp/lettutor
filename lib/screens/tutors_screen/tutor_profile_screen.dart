@@ -10,7 +10,6 @@ import 'package:lettutor/components/tutor_screen/tutor_info_header.dart';
 import 'package:lettutor/components/tutor_screen/tutor_interactions_view.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_schedule_screen.dart';
 import 'package:lettutor/styles/consts.dart';
-import 'package:lettutor/styles/text_styles.dart';
 import 'package:lettutor/extensions/navigate_extensions.dart';
 
 class TutorProfileScreen extends StatefulWidget {
@@ -91,12 +90,6 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                     TutorInfoView(),
                     SizedBox(
                       height: PaddingValue.large,
-                    ),
-                    Text(
-                      'Ratings and Comment',
-                      style: TextStyles.subtitle1SemiBold.copyWith(
-                        color: Colors.blue,
-                      ),
                     ),
                   ],
                 ),

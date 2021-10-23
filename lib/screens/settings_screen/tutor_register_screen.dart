@@ -1,16 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/components/bar_button.dart';
-import 'package:lettutor/components/navigation_back_button.dart';
-import 'package:lettutor/components/settings_screen/tutor_register_basic_info.dart';
-import 'package:lettutor/components/settings_screen/tutor_register_cv.dart';
-import 'package:lettutor/components/settings_screen/tutor_register_done_view.dart';
-import 'package:lettutor/components/settings_screen/tutor_register_introduction_video.dart';
-import 'package:lettutor/components/settings_screen/tutor_register_student_info.dart';
+import 'package:lettutor/components/settings_screen/tutor_register_waiting_view.dart';
 import 'package:lettutor/components/settings_screen/tutor_register_view.dart';
-import 'package:lettutor/components/settings_screen/user_profile_header.dart';
-import 'package:lettutor/styles/consts.dart';
-import 'package:lettutor/styles/text_styles.dart';
 
 class TutorRegisterScreen extends StatefulWidget {
   const TutorRegisterScreen({Key? key}) : super(key: key);

@@ -6,7 +6,7 @@ class NavigationBackButton extends StatefulWidget {
     Key? key,
     this.title = 'Back',
   }) : super(key: key);
-  
+
   final String title;
 
   @override
@@ -20,14 +20,23 @@ class _NavigationBackButtonState extends State<NavigationBackButton> {
       onTap: back,
       child: Row(
         children: [
-          Icon(Icons.arrow_back_ios, size: 16,),
-          Text(widget.title, style: TextStyles.subtitle2SemiBold,),
+          Container(
+            padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
+            child: Icon(
+              Icons.arrow_back_ios,
+              size: 16,
+            ),
+          ),
+          Text(
+            widget.title,
+            style: TextStyles.subtitle2SemiBold,
+          ),
         ],
       ),
     );
   }
 
-  void back(){
+  void back() {
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).pop();
     }

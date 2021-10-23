@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/settings_screen/setting_item_button.dart';
 import 'package:lettutor/components/settings_screen/user_profile_setting_button.dart';
+import 'package:lettutor/screens/settings_screen/session_history_screen.dart';
 import 'package:lettutor/screens/settings_screen/tutor_register_screen.dart';
 import 'package:lettutor/screens/settings_screen/user_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
@@ -48,9 +49,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onTap: viewBookingHistory,
                 ),
                 SettingItemButton(
-                  title: 'Sesson History',
+                  title: 'Session History',
                   icon: Icons.history_rounded,
-                  onTap: viewSessonHistory,
+                  onTap: viewSessionHistory,
                 ),
                 SettingItemButton(
                   title: 'Advanced Settings',
@@ -88,8 +89,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     print('settings_screen.dart - viewBookingHistory');
   }
 
-  void viewSessonHistory() {
-    print('settings_screen.dart - viewSessonHistory');
+  void viewSessionHistory() {
+    navigate(SessionHistoryScreen());
   }
 
   void viewAdvancedSettings() {
