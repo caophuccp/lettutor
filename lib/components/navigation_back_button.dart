@@ -21,7 +21,8 @@ class _NavigationBackButtonState extends State<NavigationBackButton> {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
+            padding: EdgeInsets.fromLTRB(24, 8, 8, 8),
+            color: Colors.transparent,
             child: Icon(
               Icons.arrow_back_ios,
               size: 16,

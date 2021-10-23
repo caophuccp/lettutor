@@ -8,6 +8,7 @@ import 'package:lettutor/components/tutor_screen/tutor_info_view.dart';
 import 'package:lettutor/components/tutor_screen/tutor_reviews_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_info_header.dart';
 import 'package:lettutor/components/tutor_screen/tutor_interactions_view.dart';
+import 'package:lettutor/screens/tutors_screen/tutor_message_screen.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_schedule_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/extensions/navigate_extensions.dart';
@@ -53,11 +54,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
-                child: NavigationBackButton(),
-              ),
+              NavigationBackButton(),
               SizedBox(
                 height: SpacingValue.large,
               ),
@@ -86,7 +83,12 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                       height: 44,
                       cornerRadius: CornerRadiusValue.medium,
                     ),
-                    TutorInteractionsView(reviewAction: showReview,),
+                    TutorInteractionsView(
+                      messageAction: directMessage,
+                      reportAction: report,
+                      reviewAction: showReview,
+                      favoriteAction: toggleFavorite,
+                    ),
                     TutorInfoView(),
                     SizedBox(
                       height: PaddingValue.large,
@@ -129,7 +131,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
     );
   }
 
-  void showSchedule(){
+  void showSchedule() {
     navigate(TutorScheduleScreen());
   }
 
@@ -138,6 +140,18 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
       context: context,
       builder: (_) => TutorReviewsDialog(),
     );
+  }
+
+  void directMessage() {
+    navigate(TutorMessageScreen());
+  }
+
+  void report() {
+    print('tutor_profile_screen.dart - report');
+  }
+
+  void toggleFavorite() {
+    print('tutor_profile_screen.dart - toggleFavorite');
   }
 
   void showError() {

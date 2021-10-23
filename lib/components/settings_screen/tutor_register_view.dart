@@ -25,6 +25,11 @@ class TutorRegisterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          child: NavigationBackButton(
+            title: 'Settings',
+          ),
+        ),
         Expanded(
           child: SingleChildScrollView(
             padding: EdgeInsets.fromLTRB(
@@ -36,11 +41,6 @@ class TutorRegisterView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  child: NavigationBackButton(
-                    title: 'Settings',
-                  ),
-                ),
                 SizedBox(
                   height: SpacingValue.large,
                 ),

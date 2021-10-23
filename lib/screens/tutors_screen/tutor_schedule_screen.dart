@@ -24,11 +24,7 @@ class _TutorScheduleScreenState extends State<TutorScheduleScreen> {
         bottom: false,
         child: Column(
           children: [
-            Container(
-              padding:
-                  EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
-              child: NavigationBackButton(),
-            ),
+            NavigationBackButton(),
             SizedBox(
               height: SpacingValue.large,
             ),

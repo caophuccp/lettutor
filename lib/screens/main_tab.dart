@@ -18,11 +18,6 @@ class _MainTabState extends State<MainTab> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    Center(
-      child: Text(
-        'Tab Index 1',
-      ),
-    ),
     UpcomingScreen(),
     TutorsScreen(),
     SettingsScreen(),
@@ -44,10 +39,10 @@ class _MainTabState extends State<MainTab> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.change_history),
-            label: 'Message',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.change_history),
+          //   label: 'Message',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
             label: 'Upcoming',

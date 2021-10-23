@@ -25,40 +25,46 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       body: SafeArea(
           bottom: false,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                NavigationBackButton(title: 'Sign in',),
-                SizedBox(height: PaddingValue.extraLarge),
-                Text(
-                  'Fogot password',
-                  style: TextStyles.h5Bold,
-                ),
-                SizedBox(height: PaddingValue.medium),
-                Text(
-                  'Enter your email address to search for your account.',
-                  style: TextStyles.subtitle1Regular.copyWith(
-                    color: Colors.grey,
+          child: Column(
+            children: [
+              NavigationBackButton(title: 'Sign in',),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: PaddingValue.extraLarge),
+                      Text(
+                        'Fogot password',
+                        style: TextStyles.h5Bold,
+                      ),
+                      SizedBox(height: PaddingValue.medium),
+                      Text(
+                        'Enter your email address to search for your account.',
+                        style: TextStyles.subtitle1Regular.copyWith(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(height: PaddingValue.extraLarge),
+                      AuthScreenTextField(
+                        labelText: 'Email',
+                        hintText: 'Email',
+                        controller: emailController,
+                      ),
+                      Spacer(),
+                      BarButton(
+                        height: 52,
+                        onPressed: resetPassword,
+                        child: Text('Continue'),
+                      ),
+                      SizedBox(height: PaddingValue.extraLarge),
+                      SizedBox(height: PaddingValue.extraLarge),
+                    ],
                   ),
                 ),
-                SizedBox(height: PaddingValue.extraLarge),
-                AuthScreenTextField(
-                  labelText: 'Email',
-                  hintText: 'Email',
-                  controller: emailController,
-                ),
-                Spacer(),
-                BarButton(
-                  height: 52,
-                  onPressed: resetPassword,
-                  child: Text('Continue'),
-                ),
-                SizedBox(height: PaddingValue.extraLarge),
-                SizedBox(height: PaddingValue.extraLarge),
-              ],
-            ),
+              ),
+            ],
           )),
     );
   }
