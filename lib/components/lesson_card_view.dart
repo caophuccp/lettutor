@@ -12,6 +12,9 @@ class LessonCardView extends StatelessWidget {
     this.showTutorReview = true,
     this.isCancellable = false,
     this.onCancel,
+    this.joinMeeting,
+    this.directMessage,
+    this.countdown = false,
   }) : super(key: key);
   final tutorNameTest = 'April Corpuz';
   final tutorEmailTest = 'aprilcorpuz@email.com';
@@ -21,7 +24,10 @@ class LessonCardView extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final bool showTutorReview;
   final bool isCancellable;
+  final bool countdown;
   final void Function()? onCancel;
+  final void Function()? joinMeeting;
+  final void Function()? directMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +72,30 @@ class LessonCardView extends StatelessWidget {
               content:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
             ),
-          if (isCancellable)
-            BarButton(
-              height: 40,
-              onPressed: onCancel,
-              child: Text('Cancel'),
-              style: BarButtonStyle.destructive,
-            ),
+          Wrap(
+            runSpacing: SpacingValue.medium,
+            children: [
+              if (directMessage != null)
+                BarButton(
+                  child: Text('Direct Message'),
+                  onPressed: directMessage,
+                  height: 40,
+                ),
+              if (joinMeeting != null)
+                BarButton(
+                  child: Text(countdown ? 'Start in 5 seconds' : 'Join Meeting'),
+                  onPressed: joinMeeting,
+                  height: 40,
+                ),
+              if (isCancellable)
+                BarButton(
+                  height: 40,
+                  onPressed: onCancel,
+                  child: Text('Cancel'),
+                  style: BarButtonStyle.destructive,
+                ),
+            ],
+          ),
         ],
       ),
     );

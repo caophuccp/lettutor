@@ -17,9 +17,38 @@ class Expander extends StatefulWidget {
   final Widget content;
 
   @override
-  _ExpanderState createState() =>
-      _ExpanderState(isExpanded: this.isExpanded);
+  _ExpanderState createState() => _ExpanderState(isExpanded: this.isExpanded);
 }
+
+// class _ExpanderState extends State<Expander> {
+//   _ExpanderState({
+//     this.isExpanded = false,
+//   }) : super();
+
+//   bool isExpanded;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         GestureDetector(
+//           child: isExpanded ? widget.expandedHeader : widget.collapsedHeader,
+//           onTap: toggle,
+//         ),
+//         ExpandedSection(
+//           expand: isExpanded,
+//           child: widget.content,
+//         ),
+//       ],
+//     );
+//   }
+
+//   void toggle() {
+//     setState(() {
+//       isExpanded = !isExpanded;
+//     });
+//   }
+// }
 
 class _ExpanderState extends State<Expander> {
   _ExpanderState({

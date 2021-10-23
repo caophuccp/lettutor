@@ -8,20 +8,28 @@ class LessonDateSession extends StatelessWidget {
   const LessonDateSession({
     Key? key,
     required this.date,
+    this.isExpanded = false,
     this.showTutorReview = true,
     this.isCancellable = false,
+    this.countdown = false,
     this.onCancel,
+    this.joinMeeting,
+    this.directMessage,
   }) : super(key: key);
 
   final String date;
+  final bool isExpanded;
   final bool showTutorReview;
   final bool isCancellable;
+  final bool countdown;
   final void Function(String)? onCancel;
+  final void Function(String)? joinMeeting;
+  final void Function(String)? directMessage;
 
   @override
   Widget build(BuildContext context) {
     return Expander(
-      isExpanded: false,
+      isExpanded: isExpanded,
       expandedHeader: Container(
         width: double.infinity,
         height: 40,
@@ -89,6 +97,8 @@ class LessonDateSession extends StatelessWidget {
               showTutorReview: showTutorReview,
               isCancellable: isCancellable,
               onCancel: (){onCancel?.call('id');},
+              joinMeeting: joinMeeting == null ? null : (){joinMeeting?.call('id');},
+              directMessage: directMessage == null ? null : (){directMessage?.call('id');},
             ),
           ),
         ),
