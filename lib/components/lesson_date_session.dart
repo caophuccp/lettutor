@@ -8,9 +8,15 @@ class LessonDateSession extends StatelessWidget {
   const LessonDateSession({
     Key? key,
     required this.date,
+    this.showTutorReview = true,
+    this.isCancellable = false,
+    this.onCancel,
   }) : super(key: key);
 
   final String date;
+  final bool showTutorReview;
+  final bool isCancellable;
+  final void Function(String)? onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +75,20 @@ class LessonDateSession extends StatelessWidget {
         color: Theme.of(context).scaffoldBackgroundColor,
       ),
       content: Container(
-        padding: EdgeInsets.symmetric(horizontal: PaddingValue.large),
+        padding: EdgeInsets.fromLTRB(
+          PaddingValue.large,
+          0,
+          PaddingValue.large,
+          PaddingValue.large,
+        ),
         child: Column(
           children: List.generate(
             3,
             (index) => LessonCardView(
               margin: EdgeInsets.only(top: PaddingValue.large),
+              showTutorReview: showTutorReview,
+              isCancellable: isCancellable,
+              onCancel: (){onCancel?.call('id');},
             ),
           ),
         ),

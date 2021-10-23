@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/styles/button_styles.dart';
 import 'package:lettutor/styles/consts.dart';
 
-enum BarButtonStyle { primary, secondary, inactive }
+enum BarButtonStyle { primary, secondary, inactive, destructive}
 
 class BarButton extends StatelessWidget {
   const BarButton({
@@ -47,6 +47,10 @@ class BarButton extends StatelessWidget {
 
     if (style == BarButtonStyle.secondary) {
       return ButtonStyles.secondaryButton(cornerRadius: cornerRadius);
+    }
+
+    if (style == BarButtonStyle.destructive) {
+      return ButtonStyles.destructiveButton(cornerRadius: cornerRadius);
     }
 
     return ButtonStyles.inactiveButton(cornerRadius: cornerRadius);

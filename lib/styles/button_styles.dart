@@ -3,7 +3,7 @@ import 'package:lettutor/styles/text_styles.dart';
 
 class ButtonStyles {
   ButtonStyles._();
-  
+
   static MaterialStateProperty<Color?> color(
       Color? defaultColor, Color? disabledColor) {
     return MaterialStateProperty.resolveWith<Color?>(
@@ -72,15 +72,16 @@ class ButtonStyles {
 
   static ButtonStyle primaryButton({double cornerRadius = 0}) {
     return ButtonStyle(
-        textStyle: textStyle(),
-        backgroundColor: color(Colors.blue, Colors.grey.shade200),
-        overlayColor: color(Colors.white24, Colors.grey.shade200),
-        foregroundColor: color(Colors.white,
-            Colors.grey.shade400), // Defer to the widget's default.
-        shape: border(cornerRadius),
-        side: side(Colors.blue, Colors.grey.shade200, 1),
-        padding: padding(EdgeInsets.all(0)),
-        minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)));
+      textStyle: textStyle(),
+      backgroundColor: color(Colors.blue, Colors.grey.shade200),
+      overlayColor: color(Colors.white24, Colors.grey.shade200),
+      foregroundColor: color(
+          Colors.white, Colors.grey.shade400), // Defer to the widget's default.
+      shape: border(cornerRadius),
+      side: side(Colors.blue, Colors.grey.shade200, 1),
+      padding: padding(EdgeInsets.all(0)),
+      minimumSize: MaterialStateProperty.all<Size>(Size.zero),
+    );
   }
 
   static ButtonStyle secondaryButton({double cornerRadius = 0}) {
@@ -92,8 +93,22 @@ class ButtonStyles {
             Colors.grey.shade400), // Defer to the widget's default.
         shape: border(cornerRadius),
         side: side(Colors.grey.shade200, Colors.grey.shade200, 1),
-        padding: padding(EdgeInsets.fromLTRB(0, 0, 0, 0)),
-        minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)));
+        padding: padding(EdgeInsets.zero),
+        minimumSize: MaterialStateProperty.all<Size>(Size.zero));
+  }
+
+  static ButtonStyle destructiveButton({double cornerRadius = 0}) {
+    return ButtonStyle(
+      textStyle: textStyle(),
+      backgroundColor: color(Colors.red.shade100, Colors.grey.shade200),
+      overlayColor: color(Colors.white24, Colors.grey.shade200),
+      foregroundColor: color(
+          Colors.red, Colors.grey.shade400), // Defer to the widget's default.
+      shape: border(cornerRadius),
+      side: side(Colors.red.shade100, Colors.grey.shade200, 1),
+      padding: padding(EdgeInsets.all(0)),
+      minimumSize: MaterialStateProperty.all<Size>(Size.zero),
+    );
   }
 
   static ButtonStyle inactiveButton({double cornerRadius = 0}) {
@@ -105,8 +120,8 @@ class ButtonStyles {
           Colors.grey.shade400), // Defer to the widget's default.
       shape: border(cornerRadius),
       side: side(Colors.grey.shade200, Colors.grey.shade200, 1),
-      padding: padding(EdgeInsets.fromLTRB(0, 0, 0, 0)),
-      minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+      padding: padding(EdgeInsets.zero),
+      minimumSize: MaterialStateProperty.all<Size>(Size.zero),
     );
   }
 
@@ -126,16 +141,18 @@ class ButtonStyles {
           Colors.grey.shade400), // Defer to the widget's default.
       shape: border(cornerRadius),
       side: side(borderColor, Colors.grey.shade200, borderWidth),
-      padding: padding(EdgeInsets.fromLTRB(0, 0, 0, 0)),
-      minimumSize: MaterialStateProperty.all<Size>(Size(0, 0)),
+      padding: padding(EdgeInsets.zero),
+      minimumSize: MaterialStateProperty.all<Size>(Size.zero),
     );
   }
 
   static ButtonStyle textButtonStyle(
-      {Color foregroundColor = Colors.blue, Color? pressedColor = const Color(4293128957)}) {
+      {Color foregroundColor = Colors.blue,
+      Color? pressedColor = const Color(4293128957)}) {
     return ButtonStyle(
-        overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
-        foregroundColor:
-            color3(foregroundColor, Colors.grey.shade200, pressedColor));
+      overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+      foregroundColor:
+          color3(foregroundColor, Colors.grey.shade200, pressedColor),
+    );
   }
 }
