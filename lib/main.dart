@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.white,
         ),
       ),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.system,
       home: MainScreen(),
     );
   }
