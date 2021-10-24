@@ -5,6 +5,7 @@ import 'package:lettutor/components/navigation_back_button.dart';
 import 'package:lettutor/components/tutor_screen/booking_date_picker.dart';
 import 'package:lettutor/components/tutor_screen/booking_time_picker.dart';
 import 'package:lettutor/components/tutor_screen/tutor_info_view.dart';
+import 'package:lettutor/components/tutor_screen/tutor_report_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_reviews_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_info_header.dart';
 import 'package:lettutor/components/tutor_screen/tutor_interactions_view.dart';
@@ -147,7 +148,10 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
   }
 
   void report() {
-    print('tutor_profile_screen.dart - report');
+    showDialog(
+      context: context,
+      builder: (_) => TutorReportDialog(),
+    );
   }
 
   void toggleFavorite() {

@@ -5,12 +5,12 @@ import 'package:lettutor/styles/text_styles.dart';
 class BoxEditor extends StatelessWidget {
   const BoxEditor({
     Key? key,
-    required this.title,
+    this.title,
     this.hintText,
     this.textFieldHeight,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final String? hintText;
   final double? textFieldHeight;
 
@@ -22,23 +22,23 @@ class BoxEditor extends StatelessWidget {
         border: Border.all(
           color: Colors.grey.shade200,
         ),
-        borderRadius:
-            BorderRadius.circular(CornerRadiusValue.medium),
+        borderRadius: BorderRadius.circular(CornerRadiusValue.medium),
       ),
       child: Column(
         children: [
-          Container(
-            color: Colors.grey.withOpacity(0.2),
-            padding: EdgeInsets.symmetric(
-              vertical: PaddingValue.medium,
-              horizontal: PaddingValue.large,
+          if (title != null)
+            Container(
+              color: Colors.grey.withOpacity(0.2),
+              padding: EdgeInsets.symmetric(
+                vertical: PaddingValue.medium,
+                horizontal: PaddingValue.large,
+              ),
+              width: double.infinity,
+              child: Text(
+                title ?? '',
+                style: TextStyles.subtitle1SemiBold,
+              ),
             ),
-            width: double.infinity,
-            child: Text(
-              title,
-              style: TextStyles.subtitle1SemiBold,
-            ),
-          ),
           Container(
             height: textFieldHeight,
             width: double.infinity,
@@ -49,6 +49,7 @@ class BoxEditor extends StatelessWidget {
               decoration: InputDecoration(
                 hintText: hintText ?? '',
                 hintStyle: TextStyles.subtitle1SemiBold,
+                hintMaxLines: 10,
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
               ),
