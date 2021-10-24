@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/lesson_date_session.dart';
-import 'package:lettutor/components/navigation_back_button.dart';
-import 'package:lettutor/styles/consts.dart';
-import 'package:lettutor/styles/text_styles.dart';
+import 'package:lettutor/extensions/navigate_extensions.dart';
+import 'package:lettutor/screens/upcoming_screen/meeting_screen.dart';
 
 class UpcomingScreen extends StatefulWidget {
   const UpcomingScreen({Key? key}) : super(key: key);
@@ -58,7 +57,7 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
   }
 
   void joinMeeting(String id) {
-    print('upcoming_screen.dart - joinMeeting - id: $id');
+    navigate(MeetingScreen());
   }
 
   void directMessage(String id) {
