@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/screens/documents_screen/documents_screen.dart';
 import 'package:lettutor/screens/home_screen/home_screen.dart';
 import 'package:lettutor/screens/settings_screen/settings_screen.dart';
 import 'package:lettutor/screens/tutors_screen/tutors_screen.dart';
@@ -20,6 +21,7 @@ class _MainTabState extends State<MainTab> {
     HomeScreen(),
     UpcomingScreen(),
     TutorsScreen(),
+    DocumentsScreen(),
     SettingsScreen(),
   ];
 
@@ -50,6 +52,10 @@ class _MainTabState extends State<MainTab> {
           BottomNavigationBarItem(
             icon: Icon(Icons.speaker_outlined),
             label: 'Tutors',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.menu_book_rounded),
+            label: 'E-Book',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

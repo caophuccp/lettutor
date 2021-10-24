@@ -84,10 +84,10 @@ class LessonDateSession extends StatelessWidget {
       ),
       content: Container(
         padding: EdgeInsets.fromLTRB(
-          PaddingValue.large,
+          PaddingValue.extraLarge,
           0,
-          PaddingValue.large,
-          PaddingValue.large,
+          PaddingValue.extraLarge,
+          PaddingValue.extraLarge,
         ),
         child: Column(
           children: List.generate(
@@ -95,6 +95,7 @@ class LessonDateSession extends StatelessWidget {
             (index) => LessonCardView(
               margin: EdgeInsets.only(top: PaddingValue.large),
               showTutorReview: showTutorReview,
+              countdown: countdown,
               isCancellable: isCancellable,
               onCancel: (){onCancel?.call('id');},
               joinMeeting: joinMeeting == null ? null : (){joinMeeting?.call('id');},

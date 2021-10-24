@@ -22,8 +22,6 @@ class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
           children: [
             Container(
               height: 40,
-              padding:
-                  EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
               child: Stack(
                 alignment: Alignment.centerLeft,
                 children: [
