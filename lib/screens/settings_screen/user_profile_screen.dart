@@ -2,16 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/components/avatar.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/navigation_back_button.dart';
-import 'package:lettutor/components/settings_screen/user_avatar_edit.dart';
 import 'package:lettutor/components/settings_screen/user_info.dart';
 import 'package:lettutor/components/settings_screen/user_info_combo_box.dart';
 import 'package:lettutor/components/settings_screen/user_profile_header.dart';
-import 'package:lettutor/components/tutor_screen/tutor_info_expanded.dart';
-import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
-import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 

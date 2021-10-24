@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/settings_screen/setting_item_button.dart';
 import 'package:lettutor/components/settings_screen/user_profile_setting_button.dart';
 import 'package:lettutor/screens/auth_screen/sign_in_screen.dart';

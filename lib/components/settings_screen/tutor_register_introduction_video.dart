@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/settings_screen/user_info.dart';
-import 'package:lettutor/components/settings_screen/user_info_combo_box.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 

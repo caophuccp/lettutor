@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/lesson_date_session.dart';
 import 'package:lettutor/components/navigation_back_button.dart';
-import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 
 class SessionHistoryScreen extends StatefulWidget {

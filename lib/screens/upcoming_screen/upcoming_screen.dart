@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/lesson_date_session.dart';
 import 'package:lettutor/extensions/navigate_extensions.dart';
 import 'package:lettutor/screens/upcoming_screen/meeting_screen.dart';
-import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 
 class UpcomingScreen extends StatefulWidget {

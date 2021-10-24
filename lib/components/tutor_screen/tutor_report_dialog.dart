@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/box_editor.dart';
 import 'package:lettutor/components/dialog_title.dart';
-import 'package:lettutor/components/tutor_review_card.dart';
-import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 
 class TutorReportDialog extends StatefulWidget {
