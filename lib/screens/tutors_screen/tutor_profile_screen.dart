@@ -163,7 +163,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
       context: context,
       builder: (context) => CupertinoAlertDialog(
         title: new Text("Error"),
-        content: new Text("No enough money for booking.\nPlease try again"),
+        content: new Text("Not enough money for booking.\nPlease try again"),
         actions: <Widget>[
           CupertinoDialogAction(
             onPressed: () {

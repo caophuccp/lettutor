@@ -22,6 +22,8 @@ class _SignInScreenState extends State<SignInScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  String? errorMessage;
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -47,13 +49,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       AuthScreenTextField(
                         labelText: 'Email',
-                        hintText: 'Email',
+                        hintText: 'Email là email',
                         controller: emailController,
                       ),
                       SizedBox(height: SpacingValue.large),
                       AuthScreenTextField(
                         labelText: 'Password',
-                        hintText: 'Password',
+                        hintText: 'Password là password',
                         obscureText: true,
                         controller: passwordController,
                       ),
@@ -69,6 +71,16 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 48,
                         cornerRadius: CornerRadiusValue.medium,
                       ),
+                      if (errorMessage != null)
+                        Container(
+                          padding: EdgeInsets.only(top: PaddingValue.large),
+                          child: Text(
+                            errorMessage!,
+                            style: TextStyles.subtitle1Regular.copyWith(
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
                       Container(
                         padding: EdgeInsets.symmetric(
                             vertical: PaddingValue.extraLarge),
@@ -153,9 +165,16 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void signIn() {
-    print('sign_in_screen.dart - login');
-    print('email: ${emailController.text} password: ${passwordController.text}');
-    pushReplacementWithoutAnimation(MainTab());
+    final email = emailController.text;
+    final password = passwordController.text;
+
+    if (email == 'email' && password == 'password') {
+      goMainTab();
+    } else {
+      setState(() {
+        errorMessage = 'Invalid email or password';
+      });
+    }
   }
 
   void forgotPassword() {
@@ -165,5 +184,8 @@ class _SignInScreenState extends State<SignInScreen> {
   void signUp() {
     navigateWithoutAnimation(SignUpScreen());
   }
-}
 
+  void goMainTab() {
+    pushReplacementWithoutAnimation(MainTab());
+  }
+}
