@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/screens/main_screen.dart';
 
 void main() {
+  // await LocalData.instance.loadTutors();
   runApp(MyApp());
 }
 
