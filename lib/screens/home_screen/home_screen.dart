@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
 import 'package:lettutor/data/local_data.dart';
+import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.only(bottom: PaddingValue.extraLarge),
                 itemCount: tutors.length,
                 itemBuilder: (context, index) => TutorCardView(
-                  onTap: showTutorProfile,
+                  onTap: (){showTutorProfile(tutors[index]);},
                   margin: EdgeInsets.fromLTRB(
                     PaddingValue.extraLarge,
                     PaddingValue.extraLarge,
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void showTutorProfile() {
-    navigate(TutorProfileScreen());
+  void showTutorProfile(Tutor tutor) {
+    navigate(TutorProfileScreen(tutor: tutor,));
   }
 }

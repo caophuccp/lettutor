@@ -167,14 +167,14 @@ class _SignInScreenState extends State<SignInScreen> {
   void signIn() {
     final email = emailController.text;
     final password = passwordController.text;
-
-    if (email == 'email' && password == 'password') {
-      goMainTab();
-    } else {
-      setState(() {
-        errorMessage = 'Invalid email or password';
-      });
-    }
+    goMainTab();
+    // if (email == 'email' && password == 'password') {
+    //   goMainTab();
+    // } else {
+    //   setState(() {
+    //     errorMessage = 'Invalid email or password';
+    //   });
+    // }
   }
 
   void forgotPassword() {

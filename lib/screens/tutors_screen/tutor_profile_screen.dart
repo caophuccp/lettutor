@@ -9,29 +9,23 @@ import 'package:lettutor/components/tutor_screen/tutor_report_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_reviews_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_info_header.dart';
 import 'package:lettutor/components/tutor_screen/tutor_interactions_view.dart';
+import 'package:lettutor/data/local_data.dart';
+import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_message_screen.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_schedule_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/extensions/navigate_extensions.dart';
 
 class TutorProfileScreen extends StatefulWidget {
-  const TutorProfileScreen({Key? key}) : super(key: key);
+  const TutorProfileScreen({Key? key, required this.tutor}) : super(key: key);
+  final Tutor tutor;
 
   @override
   _TutorProfileScreenState createState() => _TutorProfileScreenState();
 }
 
 class _TutorProfileScreenState extends State<TutorProfileScreen> {
-  final tutorNameTest = 'April Corpuz';
-  final tutorAvatarTest =
-      'https://dev.api.lettutor.com/avatar/3b994227-2695-44d4-b7ff-333b090a45d4avatar1632047402615.jpg';
-  final introductionTest =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-  final specialitiesTest = [
-    'English for kids',
-    'English for Business',
-    'Conversational'
-  ];
+  final tutors = LocalData.instance.allTutors;
 
   final specialities = [
     'All',
@@ -71,7 +65,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                   runSpacing: SpacingValue.large,
                   children: [
                     TutorInfoHeader(
-                        tutorAvatar: tutorAvatarTest, tutorName: tutorNameTest),
+                        tutorAvatar: widget.tutor.avatar, tutorName: widget.tutor.name),
                     BarButton(
                       onPressed: booking,
                       child: Text('Booking'),
@@ -90,7 +84,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                       reviewAction: showReview,
                       favoriteAction: toggleFavorite,
                     ),
-                    TutorInfoView(),
+                    TutorInfoView(tutor: widget.tutor,),
                     SizedBox(
                       height: PaddingValue.large,
                     ),
