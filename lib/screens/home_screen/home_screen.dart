@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
+import 'package:lettutor/data/local_data.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
@@ -12,16 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final tutorNameTest = 'April Corpuz';
-  final tutorAvatarTest =
-      'https://dev.api.lettutor.com/avatar/3b994227-2695-44d4-b7ff-333b090a45d4avatar1632047402615.jpg';
-  final introductionTest =
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-  final specialitiesTest = [
-    'English for kids',
-    'English for Business',
-    'Conversational'
-  ];
+  final tutors = LocalData.instance.allTutors;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.only(bottom: PaddingValue.extraLarge),
-                itemCount: 10,
+                itemCount: tutors.length,
                 itemBuilder: (context, index) => TutorCardView(
                   onTap: showTutorProfile,
                   margin: EdgeInsets.fromLTRB(
@@ -71,11 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     PaddingValue.extraLarge,
                     0,
                   ),
-                  tutorName: tutorNameTest,
-                  tutorAvatar: tutorAvatarTest,
-                  introduction: introductionTest,
+                  tutorName: tutors[index].name,
+                  tutorAvatar: tutors[index].avatar,
+                  introduction: tutors[index].bio,
                   rating: 4.8,
-                  specialities: specialitiesTest,
+                  specialities: tutors[index].specialties.split(','),
                 ),
               ),
             ),
@@ -85,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void showTutorProfile(){
+  void showTutorProfile() {
     navigate(TutorProfileScreen());
   }
 }
