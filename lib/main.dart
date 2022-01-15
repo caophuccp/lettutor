@@ -83,12 +83,12 @@ class _SplashScreenState extends State<SplashScreen> {
     await storage.init();
     final tokensString = storage.getString(key: LocalStorageKey.TOKENS) ?? '';
     if (tokensString.isEmpty) {
-      navigateWithoutAnimation(SignInScreen());
+      pushReplacementWithoutAnimation(SignInScreen());
     } else {
       final tokens = Tokens.fromJson(json.decode(tokensString));
       final rToken = tokens.refresh;
       if (rToken == null || rToken.expires.millisecondsSinceNow > 0) {
-        navigateWithoutAnimation(SignInScreen());
+        pushReplacementWithoutAnimation(SignInScreen());
       } else {
         refreshToken(rToken.token);
       }
@@ -101,11 +101,11 @@ class _SplashScreenState extends State<SplashScreen> {
       final user = response.result;
       if (user != null) {
         Global.user = user;
-        navigateWithoutAnimation(MainTab());
+        pushReplacementWithoutAnimation(MainTab());
         return;
       }
     } catch (e, s) {
-      navigateWithoutAnimation(SignInScreen());
+      pushReplacementWithoutAnimation(SignInScreen());
       print(e);
       print(s);
     }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/settings_screen/setting_item_button.dart';
 import 'package:lettutor/components/settings_screen/user_profile_setting_button.dart';
+import 'package:lettutor/config/global.dart';
+import 'package:lettutor/extensions/local_storage_service.dart';
 import 'package:lettutor/screens/auth_screen/sign_in_screen.dart';
 import 'package:lettutor/screens/settings_screen/advanced_settings.dart';
 import 'package:lettutor/screens/settings_screen/booking_history_screen.dart';
@@ -105,6 +107,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   void signOut() {
+    Global.user = null;
+    Global.accessToken = null;
+    LocalStorageService.shared.setString(key: LocalStorageKey.TOKENS, value: '');
     pushReplacementWithoutAnimation(SignInScreen());
   }
 }
