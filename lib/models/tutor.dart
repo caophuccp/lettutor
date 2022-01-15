@@ -1,8 +1,3 @@
-// To parse this JSON data, do
-//
-//     final Tutor = TutorFromMap(jsonString);
-
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<Tutor> tutorsFromJson(String str) => List<Tutor>.from(json.decode(str).map((x) => Tutor.fromMap(x)));
