@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor/api/auth_apis.dart';
 import 'package:lettutor/components/auth_screen_text_field.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/navigation_back_button.dart';
+import 'package:lettutor/extensions/snack_bar_extension.dart';
+import 'package:lettutor/extensions/validator.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 
@@ -12,6 +16,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final emailController = TextEditingController();
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -27,10 +32,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           bottom: false,
           child: Column(
             children: [
-              NavigationBackButton(title: 'Sign in',),
+              NavigationBackButton(
+                title: 'Sign in',
+              ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: PaddingValue.extraLarge),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -52,10 +60,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         hintText: 'Email',
                         controller: emailController,
                       ),
+                      if (isLoading)
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: CupertinoActivityIndicator(),
+                          ),
+                        ),
                       Spacer(),
                       BarButton(
                         height: 52,
-                        onPressed: resetPassword,
+                        onPressed: isLoading ? null : resetPassword,
                         child: Text('Continue'),
                       ),
                       SizedBox(height: PaddingValue.extraLarge),
@@ -69,7 +84,35 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     );
   }
 
-  void resetPassword(){
-    print('forgot_password_screen.dart - resetPassword - ${emailController.text}');
+  void resetPassword() async {
+    final email = emailController.text;
+    final validateEmail = Validator.emailValidator(email);
+    if (validateEmail != null) {
+      showSnackBarError(validateEmail);
+      return;
+    }
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final errorMessage = await AuthAPIs.forgotPassword(email);
+      if (errorMessage == null) {
+        showSnackBarInfo('Sign up successful');
+        Navigator.of(context).pop();
+        return;
+      } else {
+        print(errorMessage);
+        showSnackBarError(errorMessage);
+      }
+    } catch (e, s) {
+      showSnackBarError(e.toString());
+      print(e);
+      print(s);
+    }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 }
