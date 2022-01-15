@@ -19,11 +19,11 @@ Map<String, dynamic> _$TokensToJson(Tokens instance) => <String, dynamic>{
     };
 
 Token _$TokenFromJson(Map<String, dynamic> json) => Token(
-      token: json['token'] as String?,
-      expires: json['expires'] as String?,
+      token: json['token'] as String,
+      expires: const AppDateJsonConverter().fromJson(json['expires'] as String),
     );
 
 Map<String, dynamic> _$TokenToJson(Token instance) => <String, dynamic>{
       'token': instance.token,
-      'expires': instance.expires,
+      'expires': const AppDateJsonConverter().toJson(instance.expires),
     };

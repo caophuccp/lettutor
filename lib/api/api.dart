@@ -1,3 +1,4 @@
+import 'package:lettutor/config/global.dart';
 import 'package:lettutor/models/tokens.dart';
 
 class API {
@@ -6,9 +7,15 @@ class API {
   static String baseAPI = 'https://sandbox.api.lettutor.com';
 
   static Map<String, String> get headers {
+    if (Global.accessToken == null) {
+      return {
+        "Content-Type": "application/json",
+      };
+    }
+
     return {
       "Content-Type": "application/json",
-      // "Authorization": "Bearer " + (UserUtils.token ?? ''),
+      "Authorization": "Bearer " + (Global.accessToken?.token ?? ''),
     };
   }
 }
@@ -16,12 +23,10 @@ class API {
 class APIResponse<T> {
   final int statusCode;
   final String? message;
-  final Tokens? tokens;
   final T? result;
 
   APIResponse({
     required this.statusCode,
-    this.tokens,
     this.message,
     this.result,
   });

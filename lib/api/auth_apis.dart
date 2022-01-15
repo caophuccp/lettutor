@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:lettutor/api/api.dart';
+import 'package:lettutor/extensions/local_storage_service.dart';
 import 'package:lettutor/models/tokens.dart';
 import 'package:lettutor/models/user.dart';
 
@@ -46,24 +47,29 @@ class AuthAPIs {
       );
       final jsonObject = json.decode(utf8.decode(response.bodyBytes));
       final message = jsonObject['message'] as String?;
-      if (message == null) {
+      if (message != null) {
         return APIResponse(statusCode: response.statusCode, message: message);
       } else {
         final user = User.fromJson(jsonObject['user']);
         final tokens = Tokens.fromJson(jsonObject['tokens']);
-        return APIResponse(statusCode: response.statusCode, result: user, tokens: tokens);
+        final string = json.encode(tokens.toJson());
+        LocalStorageService.shared.setString(
+          key: LocalStorageKey.TOKENS,
+          value: string,
+        );
+        return APIResponse(statusCode: response.statusCode, result: user);
       }
     } catch (_, __) {
       rethrow;
     }
   }
 
-  static Future<String?> forgotPassword(String email) async {
+  static Future<APIResponse<User>> refreshToken(String token) async {
     final body = {
-      "email": email,
+      "refreshToken": token,
     };
     try {
-      final url = API.baseAPI + '/user/forgotPassword';
+      final url = API.baseAPI + '/auth/refresh-token';
       final uri = Uri.parse(url);
       final bodyString = json.encode(body);
       final response = await http.post(
@@ -72,7 +78,19 @@ class AuthAPIs {
         body: bodyString,
       );
       final jsonObject = json.decode(utf8.decode(response.bodyBytes));
-      return jsonObject['message'] as String?;
+      final message = jsonObject['message'] as String?;
+      if (message != null) {
+        return APIResponse(statusCode: response.statusCode, message: message);
+      } else {
+        final user = User.fromJson(jsonObject['user']);
+        final tokens = Tokens.fromJson(jsonObject['tokens']);
+        final string = json.encode(tokens.toJson());
+        LocalStorageService.shared.setString(
+          key: LocalStorageKey.TOKENS,
+          value: string,
+        );
+        return APIResponse(statusCode: response.statusCode, result: user);
+      }
     } catch (_, __) {
       rethrow;
     }

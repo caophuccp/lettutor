@@ -67,9 +67,16 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: Text('Forgot password?'),
                         style: ButtonStyles.textButtonStyle(),
                       ),
+                      if (isLoading)
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16),
+                            child: CupertinoActivityIndicator(),
+                          ),
+                        ),
                       BarButton(
                         child: Text('Sign in'),
-                        onPressed: signIn,
+                        onPressed: isLoading ? null : signIn,
                         height: 48,
                         cornerRadius: CornerRadiusValue.medium,
                       ),
@@ -161,8 +168,10 @@ class _SignInScreenState extends State<SignInScreen> {
     final password = passwordController.text;
     if (email.isEmpty) {
       showSnackBarError('Email must not be empty');
+      return;
     } else if (password.isEmpty) {
       showSnackBarError('Password must not be empty');
+      return;
     }
     setState(() {
       isLoading = true;

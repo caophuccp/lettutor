@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/api/auth_apis.dart';
+import 'package:lettutor/api/user_apis.dart';
 import 'package:lettutor/components/auth_screen_text_field.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/navigation_back_button.dart';
@@ -96,7 +96,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     });
 
     try {
-      final errorMessage = await AuthAPIs.forgotPassword(email);
+      final errorMessage = await UserAPIs.forgotPassword(email);
       if (errorMessage == null) {
         showSnackBarInfo('Sign up successful');
         Navigator.of(context).pop();
