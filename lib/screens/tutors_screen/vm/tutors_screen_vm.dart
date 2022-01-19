@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:lettutor/api/tutor_apis.dart';
 import 'package:lettutor/models/tutors/tutor.dart';
 
@@ -11,6 +12,7 @@ class TutorsScreenVM extends ChangeNotifier {
   bool hasMore = false;
   String searchQuery = '';
   bool isSearching = false;
+  http.Client? client;
 
   void removeError() {
     errorMessage = null;
@@ -18,10 +20,14 @@ class TutorsScreenVM extends ChangeNotifier {
   }
 
   void fetchData() async {
+    client?.close();
+    client = http.Client();
+
     try {
       final response = await TutorAPIs.getTutors(
         limit: _batchSize,
         page: _page,
+        client: client,
       );
       if (response.result != null) {
         tutors = response.result?.tutors?.rows;
@@ -40,10 +46,14 @@ class TutorsScreenVM extends ChangeNotifier {
 
   Future<void> loadMore() async {
     _page += 1;
+    client?.close();
+    client = http.Client();
+
     try {
       final response = await TutorAPIs.getTutors(
         limit: _batchSize,
         page: _page,
+        client: client,
       );
       if (response.result != null) {
         final rows = response.result?.tutors?.rows;
@@ -68,13 +78,17 @@ class TutorsScreenVM extends ChangeNotifier {
     _page = 1;
 
     if (searchQuery.isNotEmpty) {
-      return search(searchQuery);
+      return callSearchAPI();
     }
+
+    client?.close();
+    client = http.Client();
 
     try {
       final response = await TutorAPIs.getTutors(
         limit: _batchSize,
         page: _page,
+        client: client,
       );
       if (response.result != null) {
         tutors = response.result?.tutors?.rows;
@@ -98,21 +112,31 @@ class TutorsScreenVM extends ChangeNotifier {
 
   Future<void> search(String query) async {
     searchQuery = query;
-
-    if (searchQuery.isEmpty) {
-      return refresh();
-    }
-
     isSearching = true;
     notifyListeners();
+
+    if (searchQuery.isEmpty) {
+      await refresh();
+      isSearching = false;
+      notifyListeners();
+      return;
+    }
+
+    return callSearchAPI();
+  }
+
+  Future<void> callSearchAPI() async {
+    client?.close();
+    client = http.Client();
 
     try {
       final response = await TutorAPIs.search(
         searchQuery: searchQuery,
+        client: client,
       );
       hasMore = false;
       if (response.result != null) {
-        tutors = response.result?.tutors?.rows ?? [];
+        tutors = response.result?.rows ?? [];
       } else {
         errorMessage = response.message;
         print(errorMessage);

@@ -54,7 +54,6 @@ class _TutorsScreenState extends State<TutorsScreen> {
   }
 
   void _onSearchChanged(String query) {
-
     if (_debounce?.isActive ?? false) {
       _debounce?.cancel();
     }
@@ -125,8 +124,8 @@ class _TutorsScreenState extends State<TutorsScreen> {
                 if (vm.isSearching)
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 16,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16,
                       ),
                       child: CupertinoActivityIndicator(),
                     ),

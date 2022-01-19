@@ -50,15 +50,15 @@ class _LMRListViewState extends State<LMRListView> {
   Widget _body() {
     return CustomScrollView(
       controller: scrollController,
-      physics: const BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         if (widget.onRefresh != null)
           CupertinoSliverRefreshControl(
             onRefresh: widget.onRefresh,
           ),
-
         widget.sliverList,
-
         if (widget.hasMore)
           const SliverToBoxAdapter(
             child: SizedBox(
@@ -83,8 +83,8 @@ class _LMRListViewState extends State<LMRListView> {
     super.didChangeDependencies();
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-        checkLoadMore();
-      });
+      checkLoadMore();
+    });
   }
 
   void _onScroll() {
