@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/lmr_list_view.dart';
 import 'package:lettutor/components/speciality_view.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
+import 'package:lettutor/extensions/snack_bar_extension.dart';
 import 'package:lettutor/models/tutors/tutor.dart';
-import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/screens/tutors_screen/vm/tutors_screen_vm.dart';
 import 'package:lettutor/styles/consts.dart';
-import 'package:lettutor/extensions/navigate_extensions.dart';
 import 'package:lettutor/styles/text_styles.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +21,7 @@ class _TutorsScreenState extends State<TutorsScreen> {
   final specialities = [
     'All',
     'English for kids',
-    'English for Business',
+    'Business English',
     'Conversational',
     'STARTERS',
     'MOVERS',
@@ -62,11 +61,30 @@ class _TutorsScreenState extends State<TutorsScreen> {
     });
   }
 
+  void _filter(int selectedSpecialityIndex) {
+    setState(() {
+      _selectedSpecialityIndex = selectedSpecialityIndex;
+    });
+
+    if (selectedSpecialityIndex > 0) {
+      vm.filter([specialities[selectedSpecialityIndex]]);
+    } else {
+      vm.filter([]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
       value: vm,
       child: Consumer<TutorsScreenVM>(builder: (_, __, ___) {
+        final error = vm.errorMessage;
+        if (error != null) {
+          WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+            vm.removeError();
+            showSnackBarError(error);
+          });
+        }
         return Scaffold(
           body: SafeArea(
             bottom: false,
@@ -108,9 +126,7 @@ class _TutorsScreenState extends State<TutorsScreen> {
                             speciality: specialities.elementAt(index),
                             isActive: index == _selectedSpecialityIndex,
                             onTap: () {
-                              setState(() {
-                                _selectedSpecialityIndex = index;
-                              });
+                              _filter(index);
                             },
                           ),
                           separatorBuilder: (context, index) => SizedBox(

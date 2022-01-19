@@ -11,6 +11,7 @@ class TutorsScreenVM extends ChangeNotifier {
   int _page = 1;
   bool hasMore = false;
   String searchQuery = '';
+  List<String>? specialities;
   bool isSearching = false;
   http.Client? client;
 
@@ -132,6 +133,7 @@ class TutorsScreenVM extends ChangeNotifier {
     try {
       final response = await TutorAPIs.search(
         searchQuery: searchQuery,
+        specialties: specialities,
         client: client,
       );
       hasMore = false;
@@ -148,5 +150,16 @@ class TutorsScreenVM extends ChangeNotifier {
     }
     isSearching = false;
     notifyListeners();
+  }
+
+  void filter(final List<String> specialities) {
+    this.specialities = specialities
+        .map(
+          (e) => e.toLowerCase().replaceAll(' ', '-'),
+        )
+        .toList();
+    isSearching = true;
+    notifyListeners();
+    callSearchAPI();
   }
 }

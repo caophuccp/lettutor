@@ -45,8 +45,17 @@ class TutorAPIs {
   static Future<APIResponse<Tutors>> search({
     required String searchQuery,
     final http.Client? client,
+    final List<String>? specialties,
   }) async {
-    final body = {"search": searchQuery};
+    final Map<String, dynamic> body = {
+      "search": searchQuery,
+    };
+
+    if (specialties != null) {
+      body["filters"] = {
+        "specialties": specialties,
+      };
+    }
     try {
       final url = API.baseAPI + '/tutor/search';
       final uri = Uri.parse(url);
