@@ -1,85 +1,159 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor/components/lmr_list_view.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
-import 'package:lettutor/data/local_data.dart';
-import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
+import 'package:lettutor/extensions/snack_bar_extension.dart';
+import 'package:lettutor/models/tutors/tutor.dart';
+import 'package:lettutor/screens/home_screen/vm/home_screen_vm.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
-import 'package:lettutor/extensions/navigate_extensions.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final tutors = LocalData.instance.allTutors;
+class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin{
+  final vm = HomeScreenVM();
+
+  @override
+  void initState() {
+    super.initState();
+
+    vm.fetchData();
+  }
+
+  @override
+  void dispose() {
+    vm.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: PaddingValue.extraLarge,
-                vertical: PaddingValue.medium,
-              ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 4,
-                    offset: Offset(0, 4), // changes position of shadow
+    super.build(context);
+    
+    return ChangeNotifierProvider.value(
+      value: vm,
+      child: Consumer<HomeScreenVM>(builder: (_, __, ___) {
+        final error = vm.errorMessage;
+        if (error != null) {
+          WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+            vm.removeError();
+            showSnackBarError(error);
+          });
+        }
+        return Scaffold(
+          body: SafeArea(
+            bottom: false,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: PaddingValue.extraLarge,
+                    vertical: PaddingValue.medium,
                   ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    'Recommended Tutors',
-                    style: TextStyles.h6Bold,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 4,
+                        offset: Offset(0, 4), // changes position of shadow
+                      ),
+                    ],
                   ),
-                  Icon(
-                    Icons.arrow_right_rounded,
-                    size: 30,
+                  child: Row(
+                    children: [
+                      Text(
+                        'Recommended Tutors',
+                        style: TextStyles.h6Bold,
+                      ),
+                      Icon(
+                        Icons.arrow_right_rounded,
+                        size: 30,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.only(bottom: PaddingValue.extraLarge),
-                itemCount: tutors.length,
-                itemBuilder: (context, index) => TutorCardView(
-                  onTap: (){showTutorProfile(tutors[index]);},
-                  margin: EdgeInsets.fromLTRB(
-                    PaddingValue.extraLarge,
-                    PaddingValue.extraLarge,
-                    PaddingValue.extraLarge,
-                    0,
-                  ),
-                  tutorName: tutors[index].name,
-                  tutorAvatar: tutors[index].avatar,
-                  introduction: tutors[index].bio,
-                  rating: 4.8,
-                  specialities: tutors[index].specialties.split(','),
                 ),
-              ),
+                Expanded(
+                  child: _buildListView(),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }),
     );
   }
 
-  void showTutorProfile(Tutor tutor) {
-    navigate(TutorProfileScreen(tutor: tutor,));
+  Widget _buildListView() {
+    final tutors = vm.tutors;
+    if (tutors == null) {
+      return Center(
+        child: CupertinoActivityIndicator(),
+      );
+    }
+
+    if (tutors.isEmpty) {
+      return Center(
+        child: Text(
+          'No Tutors',
+          style: TextStyles.subtitle2SemiBold,
+        ),
+      );
+    }
+    return LMRListView(
+      sliverList: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (_, index) {
+            final tutor = tutors[index];
+            return TutorCardView(
+              onTap: () {
+                showTutorProfile(tutor);
+              },
+              margin: EdgeInsets.fromLTRB(
+                PaddingValue.extraLarge,
+                PaddingValue.extraLarge,
+                PaddingValue.extraLarge,
+                0,
+              ),
+              tutorName: tutor.name ?? '',
+              tutorAvatar: tutor.avatar ?? '',
+              introduction: tutor.bio ?? '',
+              rating: 4.8,
+              specialities: (tutor.specialties ?? '').split(','),
+            );
+          },
+          childCount: tutors.length,
+        ),
+      ),
+      hasMore: vm.hasMore,
+      onRefresh: refresh,
+      onLoadMore: loadMore,
+    );
   }
+
+  Future<void> refresh() async {
+    await vm.refresh();
+  }
+
+  Future<void> loadMore() async {
+    await vm.loadMore();
+  }
+
+  void showTutorProfile(Tutor tutor) {
+    // navigate(
+    //   TutorProfileScreen(
+    //     tutor: tutor,
+    //   ),
+    // );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

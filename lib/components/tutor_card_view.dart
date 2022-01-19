@@ -57,6 +57,7 @@ class TutorCardView extends StatelessWidget {
           child: Container(
             padding: EdgeInsets.all(PaddingValue.large),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,

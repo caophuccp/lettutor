@@ -14,27 +14,37 @@ class MainTab extends StatefulWidget {
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _MainTabState extends State<MainTab> {
+class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin{
   int _selectedIndex = 0;
+  TabController? _controller;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    HomeScreen(),
-    UpcomingScreen(),
-    TutorsScreen(),
-    DocumentsScreen(),
-    SettingsScreen(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = TabController(length: 5, vsync: this);
+  }
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    _controller?.animateTo(index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: TabBarView(
+        controller: _controller,
+        children: [
+          HomeScreen(),
+          UpcomingScreen(),
+          TutorsScreen(),
+          DocumentsScreen(),
+          SettingsScreen(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

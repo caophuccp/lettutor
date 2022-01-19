@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:lettutor/api/api.dart';
+import 'package:lettutor/config/global.dart';
 import 'package:lettutor/extensions/local_storage_service.dart';
 import 'package:lettutor/models/tokens.dart';
 import 'package:lettutor/models/user.dart';
@@ -53,6 +54,7 @@ class AuthAPIs {
         final user = User.fromJson(jsonObject['user']);
         final tokens = Tokens.fromJson(jsonObject['tokens']);
         final string = json.encode(tokens.toJson());
+        Global.accessToken = tokens.access;
         LocalStorageService.shared.setString(
           key: LocalStorageKey.TOKENS,
           value: string,
@@ -85,6 +87,7 @@ class AuthAPIs {
         final user = User.fromJson(jsonObject['user']);
         final tokens = Tokens.fromJson(jsonObject['tokens']);
         final string = json.encode(tokens.toJson());
+        Global.accessToken = tokens.access;
         LocalStorageService.shared.setString(
           key: LocalStorageKey.TOKENS,
           value: string,
