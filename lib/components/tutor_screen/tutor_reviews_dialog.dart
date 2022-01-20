@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/dialog_title.dart';
 import 'package:lettutor/components/tutor_review_card.dart';
+import 'package:lettutor/models/tutors/tutor.dart';
 import 'package:lettutor/styles/consts.dart';
 
 class TutorReviewsDialog extends StatelessWidget {
-  const TutorReviewsDialog({Key? key}) : super(key: key);
+  const TutorReviewsDialog({
+    Key? key,
+    required this.feedbacks,
+  }) : super(key: key);
+
+  final List<Feedbacks> feedbacks;
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +21,16 @@ class TutorReviewsDialog extends StatelessWidget {
           Expanded(
             child: ListView.separated(
               padding: EdgeInsets.all(PaddingValue.large),
-              itemBuilder: (context, index) => TutorReviewCard(
-                tutorName: 'Yến Trần',
-                tutorAvatar:
-                    'https://dev.api.lettutor.com/avatar/3b994227-2695-44d4-b7ff-333b090a45d4avatar1632047402615.jpg',
-                rating: 4.5,
-                reviewContent:
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-              ),
-              itemCount: 2,
+              itemBuilder: (context, index) {
+                final feedback = feedbacks[index];
+                return TutorReviewCard(
+                  tutorName: feedback.firstInfo?.name ?? '',
+                  tutorAvatar: feedback.firstInfo?.avatar ?? '',
+                  rating: feedback.rating,
+                  reviewContent: feedback.content,
+                );
+              },
+              itemCount: feedbacks.length,
               separatorBuilder: (_, index) => SizedBox(
                 height: PaddingValue.large,
               ),

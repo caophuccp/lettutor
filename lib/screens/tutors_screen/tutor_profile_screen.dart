@@ -192,7 +192,9 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                                 reportAction: report,
                                 reviewAction: showReview,
                                 favoriteAction: toggleFavorite,
-                                isFavorite: vm.tutor?.isFavorite ?? widget.tutor?.isFavorite ?? false,
+                                isFavorite: vm.tutor?.isFavorite ??
+                                    widget.tutor?.isFavorite ??
+                                    false,
                               ),
                               TutorInfoView(
                                 bio: tutorBio,
@@ -256,7 +258,9 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
   void showReview() {
     showDialog(
       context: context,
-      builder: (_) => TutorReviewsDialog(),
+      builder: (_) => TutorReviewsDialog(
+        feedbacks: vm.tutor?.user?.feedbacks ?? widget.tutor?.feedbacks ?? [],
+      ),
     );
   }
 

@@ -15,8 +15,8 @@ class TutorReviewCard extends StatelessWidget {
 
   final String tutorAvatar;
   final String tutorName;
-  final double rating;
-  final String reviewContent;
+  final double? rating;
+  final String? reviewContent;
   final EdgeInsetsGeometry? margin;
 
   @override
@@ -71,38 +71,43 @@ class TutorReviewCard extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                rating.toStringAsFixed(1),
-                                style: TextStyles.subtitle1SemiBold,
-                              ),
-                              Icon(
-                                Icons.star_rounded,
-                                color: Colors.yellow[600],
-                                size: 20,
-                              )
-                            ],
-                          )
+                          if (rating != null)
+                            Row(
+                              children: [
+                                Text(
+                                  rating!.toStringAsFixed(1),
+                                  style: TextStyles.subtitle1SemiBold,
+                                ),
+                                Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.yellow[600],
+                                  size: 20,
+                                )
+                              ],
+                            )
                         ],
                       ),
                       Container(
                         padding: EdgeInsets.only(top: PaddingValue.small),
-                        child: Text('15:55-22/10/2021', style: TextStyles.captionSemiBold,),
+                        child: Text(
+                          '15:55-22/10/2021',
+                          style: TextStyles.captionSemiBold,
+                        ),
                       )
                     ],
                   ),
                 ),
               ],
             ),
-            SizedBox(height: PaddingValue.medium),
-            Container(
-              padding: EdgeInsets.only(top: PaddingValue.small),
-              child: Text(
-                reviewContent,
-                style: TextStyles.subtitle1Regular,
-              ),
-            )
+            
+            if (reviewContent != null && reviewContent!.isNotEmpty)
+              Container(
+                padding: EdgeInsets.only(top: PaddingValue.medium),
+                child: Text(
+                  reviewContent!,
+                  style: TextStyles.subtitle1Regular,
+                ),
+              )
           ],
         ),
       ),
