@@ -8,11 +8,13 @@ class BoxEditor extends StatelessWidget {
     this.title,
     this.hintText,
     this.textFieldHeight,
+    this.onChanged,
   }) : super(key: key);
 
   final String? title;
   final String? hintText;
   final double? textFieldHeight;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class BoxEditor extends StatelessWidget {
               horizontal: PaddingValue.large,
             ),
             child: TextField(
+              onChanged: onChanged,
               decoration: InputDecoration(
                 hintText: hintText ?? '',
                 hintStyle: TextStyles.subtitle1SemiBold,

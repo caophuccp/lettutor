@@ -11,7 +11,7 @@ class UserAPIs {
     try {
       final url = API.baseAPI + '/user/info';
       final uri = Uri.parse(url);
-      final response = await http.post(
+      final response = await http.get(
         uri,
         headers: API.headers,
       );

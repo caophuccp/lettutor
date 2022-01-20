@@ -1,25 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lettutor/components/bar_button.dart';
 import 'package:lettutor/components/box_editor.dart';
 import 'package:lettutor/components/box_info.dart';
 import 'package:lettutor/components/dialog_title.dart';
 import 'package:lettutor/components/row_info.dart';
+import 'package:lettutor/config/global.dart';
+import 'package:lettutor/models/schedule/schedule.dart';
 import 'package:lettutor/styles/consts.dart';
 
 class BookingDetailsDialog extends StatefulWidget {
-  const BookingDetailsDialog({Key? key}) : super(key: key);
+  const BookingDetailsDialog({
+    Key? key,
+    required this.schedule,
+    required this.price,
+  }) : super(key: key);
+
+  final Schedule schedule;
+  final int price;
 
   @override
   _BookingDetailsDialogState createState() => _BookingDetailsDialogState();
 }
 
 class _BookingDetailsDialogState extends State<BookingDetailsDialog> {
+  final DateFormat dateFormat = DateFormat('EEE dd MMM yyyy');
+
+  Schedule get schedule {
+    return widget.schedule;
+  }
+
+  String get bookingTime {
+    final date = dateFormat.format(DateTime.fromMillisecondsSinceEpoch(schedule.startTimestamp));
+    final start = schedule.startTime;
+    final end = schedule.endTime;
+    return '$start-$end\n$date';
+  }
+
+  String note = '';
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: GestureDetector(
         onTap: hideKeyboard,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             DialogTitle(title: 'Booking'),
             Expanded(
@@ -29,7 +55,7 @@ class _BookingDetailsDialogState extends State<BookingDetailsDialog> {
                   children: [
                     BoxInfo(
                       title: 'Booking Time',
-                      content: '10:00-10:25\nThu 21 Oct 2021',
+                      content: bookingTime,
                     ),
                     SizedBox(
                       height: PaddingValue.large,
@@ -48,14 +74,14 @@ class _BookingDetailsDialogState extends State<BookingDetailsDialog> {
                         children: [
                           RowInfo(
                             title: 'Balance',
-                            content: '10',
+                            content: Global.user?.walletInfo?.amount ?? '',
                           ),
                           SizedBox(
                             height: SpacingValue.large,
                           ),
                           RowInfo(
                             title: 'Price',
-                            content: '2',
+                            content: widget.price.toString(),
                           ),
                         ],
                       ),
@@ -67,6 +93,9 @@ class _BookingDetailsDialogState extends State<BookingDetailsDialog> {
                       title: 'Notes',
                       hintText: 'Notes',
                       textFieldHeight: 150,
+                      onChanged: (value){
+                        note = value;
+                      },
                     ),
                   ],
                 ),
@@ -76,7 +105,7 @@ class _BookingDetailsDialogState extends State<BookingDetailsDialog> {
               padding: EdgeInsets.all(PaddingValue.large),
               child: BarButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(note);
                 },
                 height: 40,
                 child: Text('Book'),

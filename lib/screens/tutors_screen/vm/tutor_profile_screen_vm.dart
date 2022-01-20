@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:lettutor/api/tutor_apis.dart';
-import 'package:lettutor/models/tutors/tutor.dart';
 import 'package:lettutor/models/tutors/tutor_detail.dart';
 
 class TutorProfileScreenVM extends ChangeNotifier {

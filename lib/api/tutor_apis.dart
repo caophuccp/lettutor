@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:lettutor/api/api.dart';
-import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/models/tutors/tutor_detail.dart';
 import 'package:lettutor/models/tutors/tutor_list.dart';
-import 'package:lettutor/models/user.dart';
 
 class TutorAPIs {
   TutorAPIs._();

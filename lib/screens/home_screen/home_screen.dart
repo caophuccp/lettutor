@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/lmr_list_view.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
+import 'package:lettutor/config/global.dart';
 import 'package:lettutor/extensions/navigate_extensions.dart';
 import 'package:lettutor/extensions/snack_bar_extension.dart';
 import 'package:lettutor/models/tutors/tutor.dart';

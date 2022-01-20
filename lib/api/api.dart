@@ -1,5 +1,4 @@
 import 'package:lettutor/config/global.dart';
-import 'package:lettutor/models/tokens.dart';
 
 class API {
   API._();

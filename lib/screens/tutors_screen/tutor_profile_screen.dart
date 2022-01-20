@@ -10,7 +10,7 @@ import 'package:lettutor/components/tutor_screen/tutor_report_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_reviews_dialog.dart';
 import 'package:lettutor/components/tutor_screen/tutor_info_header.dart';
 import 'package:lettutor/components/tutor_screen/tutor_interactions_view.dart';
-import 'package:lettutor/data/local_data.dart';
+import 'package:lettutor/config/global.dart';
 import 'package:lettutor/extensions/snack_bar_extension.dart';
 import 'package:lettutor/models/tutors/tutor.dart';
 import 'package:lettutor/screens/tutors_screen/tutor_message_screen.dart';
@@ -36,8 +36,6 @@ class TutorProfileScreen extends StatefulWidget {
 }
 
 class _TutorProfileScreenState extends State<TutorProfileScreen> {
-  final tutors = LocalData.instance.allTutors;
-
   final specialities = [
     'All',
     'English for kids',
@@ -176,12 +174,6 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                                 rating: tutorRating,
                               ),
                               BarButton(
-                                onPressed: booking,
-                                child: Text('Booking'),
-                                height: 44,
-                                cornerRadius: CornerRadiusValue.medium,
-                              ),
-                              BarButton(
                                 onPressed: showSchedule,
                                 child: Text('Schedule'),
                                 height: 44,
@@ -252,7 +244,10 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
   }
 
   void showSchedule() {
-    navigate(TutorScheduleScreen());
+    navigate(TutorScheduleScreen(
+      tutorId: widget.tutorId,
+      price: vm.tutor?.price ?? widget.tutor?.price ?? -1,
+    ));
   }
 
   void showReview() {
