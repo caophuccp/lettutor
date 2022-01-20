@@ -8,9 +8,11 @@ class TutorInteractionsView extends StatelessWidget {
     this.messageAction,
     this.reportAction,
     this.reviewAction,
-    this.favoriteAction
+    this.favoriteAction,
+    required this.isFavorite,
   }) : super(key: key);
 
+  final bool isFavorite;
   final void Function()? messageAction;
   final void Function()? reportAction;
   final void Function()? reviewAction;
@@ -27,14 +29,12 @@ class TutorInteractionsView extends StatelessWidget {
           color: Colors.blue,
           onTap: messageAction,
         ),
-
         TutorInteractionButton(
           icon: Icons.report_outlined,
           title: 'Report',
           color: Colors.red,
           onTap: reportAction,
         ),
-
         TutorInteractionButton(
           icon: Icons.rate_review_outlined,
           title: 'Review',
@@ -42,9 +42,9 @@ class TutorInteractionsView extends StatelessWidget {
           onTap: reviewAction,
         ),
         TutorInteractionButton(
-          icon: Icons.favorite_border_rounded,
+          icon: isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
           title: 'Favorite',
-          color: Colors.grey,
+          color: isFavorite ? Colors.red : Colors.grey,
           onTap: favoriteAction,
         ),
       ],
@@ -53,13 +53,13 @@ class TutorInteractionsView extends StatelessWidget {
 }
 
 class TutorInteractionButton extends StatelessWidget {
-  const TutorInteractionButton({
-    Key? key,
-    required this.icon,
-    required this.title,
-    required this.color,
-    this.onTap
-  }) : super(key: key);
+  const TutorInteractionButton(
+      {Key? key,
+      required this.icon,
+      required this.title,
+      required this.color,
+      this.onTap})
+      : super(key: key);
 
   final IconData icon;
   final String title;

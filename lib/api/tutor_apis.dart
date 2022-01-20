@@ -108,7 +108,7 @@ class TutorAPIs {
           headers: API.headers,
         );
       }
-      
+
       final jsonObject = json.decode(utf8.decode(response.bodyBytes));
       final message = jsonObject['message'] as String?;
       if (message != null) {
@@ -117,6 +117,44 @@ class TutorAPIs {
         final result = TutorDetail.fromJson(jsonObject);
         return APIResponse(statusCode: response.statusCode, result: result);
       }
+    } catch (_, __) {
+      rethrow;
+    }
+  }
+
+  static Future<APIResponse<int>> manageFavoriteTutor({
+    required String tutorId,
+    final http.Client? client,
+  }) async {
+    final body = {"tutorId": tutorId};
+    try {
+      final url = API.baseAPI + '/user/manageFavoriteTutor';
+      final uri = Uri.parse(url);
+      final bodyString = json.encode(body);
+      final http.Response response;
+
+      if (client == null) {
+        response = await http.post(
+          uri,
+          headers: API.headers,
+          body: bodyString,
+        );
+      } else {
+        response = await client.post(
+          uri,
+          headers: API.headers,
+          body: bodyString,
+        );
+      }
+
+      final jsonObject = json.decode(utf8.decode(response.bodyBytes));
+      final message = jsonObject['message'] as String?;
+      final result = (jsonObject['result'] is int) ? jsonObject['result'] as int : null;
+      return APIResponse(
+        statusCode: response.statusCode,
+        result: result,
+        message: message,
+      );
     } catch (_, __) {
       rethrow;
     }

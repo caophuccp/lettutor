@@ -35,6 +35,9 @@ class Tutor {
   @JsonKey(ignore: true)
   double? rating;
 
+  @JsonKey(ignore: true)
+  bool? isFavorite;
+
   void calcAvgRating() {
     final fbs = feedbacks;
     if (fbs == null) {

@@ -14,6 +14,14 @@ class TutorList {
     if (tutorsRows != null) {
       for (final tutor in tutorsRows) {
         tutor.calcAvgRating();
+        if (favoriteTutor != null) {
+          for (final fav in favoriteTutor!) {
+            if (fav.secondId == tutor.userId) {
+              tutor.isFavorite = true;
+              break;
+            }
+          }
+        }
       }
     }
   }

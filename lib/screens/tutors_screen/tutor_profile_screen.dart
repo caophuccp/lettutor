@@ -192,6 +192,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
                                 reportAction: report,
                                 reviewAction: showReview,
                                 favoriteAction: toggleFavorite,
+                                isFavorite: vm.tutor?.isFavorite ?? widget.tutor?.isFavorite ?? false,
                               ),
                               TutorInfoView(
                                 bio: tutorBio,
@@ -271,7 +272,7 @@ class _TutorProfileScreenState extends State<TutorProfileScreen> {
   }
 
   void toggleFavorite() {
-    print('tutor_profile_screen.dart - toggleFavorite');
+    vm.toggleFavorite(widget.tutorId);
   }
 
   void showError() {

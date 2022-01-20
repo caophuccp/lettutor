@@ -15,14 +15,40 @@ class TutorProfileScreenVM extends ChangeNotifier {
   }
 
   void fetchData(String tutorId) async {
+    try {
+      final response = await TutorAPIs.getTutorById(tutorId: tutorId);
+      if (response.result != null) {
+        tutor = response.result;
+      } else {
+        errorMessage = response.message;
+        print(errorMessage);
+      }
+    } catch (e, s) {
+      print(e);
+      print(s);
+      errorMessage = e.toString();
+    }
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    client?.close();
+    super.dispose();
+  }
+
+  void toggleFavorite(String tutorId) async {
+    client?.close();
     client = http.Client();
     try {
-      final response = await TutorAPIs.getTutorById(
+      final response = await TutorAPIs.manageFavoriteTutor(
         tutorId: tutorId,
         client: client,
       );
       if (response.result != null) {
-        tutor = response.result;
+        tutor?.isFavorite = false;
+      } else if ('Manage success' == response.message) {
+        tutor?.isFavorite = true;
       } else {
         errorMessage = response.message;
         print(errorMessage);
@@ -35,12 +61,7 @@ class TutorProfileScreenVM extends ChangeNotifier {
       client?.close();
       client = null;
     }
-    notifyListeners();
-  }
 
-  @override
-  void dispose() {
-    client?.close();
-    super.dispose();
+    notifyListeners();
   }
 }
