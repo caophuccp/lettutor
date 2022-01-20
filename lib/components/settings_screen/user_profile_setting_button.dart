@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/avatar.dart';
+import 'package:lettutor/config/global.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 
@@ -32,14 +33,14 @@ class UserProfileSettingButton extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'April Corpuz',
+                  Global.user?.name ?? '',
                   style: TextStyles.subtitle1SemiBold,
                 ),
                 SizedBox(
                   height: PaddingValue.small,
                 ),
                 Text(
-                  'aprilcorpuz@email.com',
+                  Global.user?.email ?? '',
                   style: TextStyles.subtitle2Regular,
                 ),
               ],

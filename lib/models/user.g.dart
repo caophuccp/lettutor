@@ -23,7 +23,10 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
           : WalletInfo.fromJson(json['walletInfo'] as Map<String, dynamic>),
       level: json['level'] as String?,
       learnTopics: (json['learnTopics'] as List<dynamic>?)
-          ?.map((e) => LearnTopics.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => LearnTopic.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      testPreparations: (json['testPreparations'] as List<dynamic>?)
+          ?.map((e) => TestPreparation.fromJson(e as Map<String, dynamic>))
           .toList(),
       isPhoneActivated: json['isPhoneActivated'] as bool?,
       timezone: json['timezone'] as int?,
@@ -43,6 +46,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'walletInfo': instance.walletInfo,
       'level': instance.level,
       'learnTopics': instance.learnTopics,
+      'testPreparations': instance.testPreparations,
       'isPhoneActivated': instance.isPhoneActivated,
       'timezone': instance.timezone,
     };
@@ -68,13 +72,27 @@ Map<String, dynamic> _$WalletInfoToJson(WalletInfo instance) =>
       'bonus': instance.bonus,
     };
 
-LearnTopics _$LearnTopicsFromJson(Map<String, dynamic> json) => LearnTopics(
+LearnTopic _$LearnTopicFromJson(Map<String, dynamic> json) => LearnTopic(
       id: json['id'] as int,
       key: json['key'] as String,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$LearnTopicsToJson(LearnTopics instance) =>
+Map<String, dynamic> _$LearnTopicToJson(LearnTopic instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'key': instance.key,
+      'name': instance.name,
+    };
+
+TestPreparation _$TestPreparationFromJson(Map<String, dynamic> json) =>
+    TestPreparation(
+      id: json['id'] as int,
+      key: json['key'] as String,
+      name: json['name'] as String,
+    );
+
+Map<String, dynamic> _$TestPreparationToJson(TestPreparation instance) =>
     <String, dynamic>{
       'id': instance.id,
       'key': instance.key,

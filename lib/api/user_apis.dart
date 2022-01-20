@@ -47,4 +47,29 @@ class UserAPIs {
       rethrow;
     }
   }
+
+  static Future<String?> update(User user) async {
+    final body = {
+      "name": user.name,
+      "phone": user.phone,
+      "birthday": user.birthday,
+      "level": user.level,
+      "learnTopics": user.learnTopics?.map((e) => e.id).toList() ?? [],
+      "testPreparations": user.testPreparations?.map((e) => e.id).toList() ?? [],
+    };
+    try {
+      final url = API.baseAPI + '/user/info';
+      final uri = Uri.parse(url);
+      final bodyString = json.encode(body);
+      final response = await http.put(
+        uri,
+        headers: API.headers,
+        body: bodyString,
+      );
+      final jsonObject = json.decode(utf8.decode(response.bodyBytes));
+      return jsonObject['message'] as String?;
+    } catch (_, __) {
+      rethrow;
+    }
+  }
 }
