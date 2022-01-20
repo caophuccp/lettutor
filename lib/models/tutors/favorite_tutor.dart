@@ -67,6 +67,8 @@ class SecondInfo {
 @JsonSerializable()
 class TutorInfo {
   String? id;
+  String? avatar;
+  String? name;
   String? userId;
   String? video;
   String? bio;
@@ -98,6 +100,8 @@ class TutorInfo {
     required this.isNative,
     required this.createdAt,
     required this.updatedAt,
+    required this.avatar,
+    required this.name,
   });
 
   factory TutorInfo.fromJson(Map<String, dynamic> json) =>

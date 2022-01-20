@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 class LMRListView extends StatefulWidget {
   const LMRListView({
     Key? key,
-    required this.sliverList,
+    required this.slivers,
     required this.hasMore,
     this.onLoadMore,
     this.onRefresh,
   }) : super(key: key);
 
-  final Widget sliverList;
+  final List<Widget> slivers;
   final bool hasMore;
   final Future<void> Function()? onLoadMore;
   final Future<void> Function()? onRefresh;
@@ -58,7 +58,7 @@ class _LMRListViewState extends State<LMRListView> {
           CupertinoSliverRefreshControl(
             onRefresh: widget.onRefresh,
           ),
-        widget.sliverList,
+        ...widget.slivers,
         if (widget.hasMore)
           const SliverToBoxAdapter(
             child: SizedBox(

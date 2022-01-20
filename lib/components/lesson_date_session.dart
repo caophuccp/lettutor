@@ -97,9 +97,24 @@ class LessonDateSession extends StatelessWidget {
               showTutorReview: showTutorReview,
               countdown: countdown,
               isCancellable: isCancellable,
-              onCancel: (){onCancel?.call('id');},
-              joinMeeting: joinMeeting == null ? null : (){joinMeeting?.call('id');},
-              directMessage: directMessage == null ? null : (){directMessage?.call('id');},
+              onCancel: () {
+                onCancel?.call('id');
+              },
+              joinMeeting: joinMeeting == null
+                  ? null
+                  : () {
+                      joinMeeting?.call('id');
+                    },
+              directMessage: directMessage == null
+                  ? null
+                  : () {
+                      directMessage?.call('id');
+                    },
+              lessionTime: '',
+              request: '',
+              startTime: DateTime.now(),
+              tutorAvatar: '',
+              tutorName: '',
             ),
           ),
         ),

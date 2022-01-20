@@ -19,7 +19,10 @@ class TutorsScreen extends StatefulWidget {
   _TutorsScreenState createState() => _TutorsScreenState();
 }
 
-class _TutorsScreenState extends State<TutorsScreen> {
+class _TutorsScreenState extends State<TutorsScreen> with AutomaticKeepAliveClientMixin{
+  @override
+  bool get wantKeepAlive => true;
+
   final specialities = [
     'All',
     'English for kids',
@@ -77,6 +80,7 @@ class _TutorsScreenState extends State<TutorsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider.value(
       value: vm,
       child: Consumer<TutorsScreenVM>(builder: (_, __, ___) {
@@ -176,30 +180,32 @@ class _TutorsScreenState extends State<TutorsScreen> {
       );
     }
     return LMRListView(
-      sliverList: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (_, index) {
-            final tutor = tutors[index];
-            return TutorCardView(
-              onTap: () {
-                viewTutorProfile(tutor);
-              },
-              margin: EdgeInsets.fromLTRB(
-                PaddingValue.extraLarge,
-                PaddingValue.extraLarge,
-                PaddingValue.extraLarge,
-                0,
-              ),
-              tutorName: tutor.name ?? '',
-              tutorAvatar: tutor.avatar ?? '',
-              introduction: tutor.bio ?? '',
-              rating: tutor.rating,
-              specialities: tutor.specialties?.split(',') ?? [],
-            );
-          },
-          childCount: tutors.length,
+      slivers: [
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (_, index) {
+              final tutor = tutors[index];
+              return TutorCardView(
+                onTap: () {
+                  viewTutorProfile(tutor);
+                },
+                margin: EdgeInsets.fromLTRB(
+                  PaddingValue.extraLarge,
+                  PaddingValue.extraLarge,
+                  PaddingValue.extraLarge,
+                  0,
+                ),
+                tutorName: tutor.name ?? '',
+                tutorAvatar: tutor.avatar ?? '',
+                introduction: tutor.bio ?? '',
+                rating: tutor.rating,
+                specialities: tutor.specialties?.split(',') ?? [],
+              );
+            },
+            childCount: tutors.length,
+          ),
         ),
-      ),
+      ],
       hasMore: vm.hasMore,
       onRefresh: refresh,
       onLoadMore: loadMore,

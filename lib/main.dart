@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.white,
         ),
       ),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       home: SplashScreen(),
     );
   }

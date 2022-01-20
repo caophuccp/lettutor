@@ -83,10 +83,14 @@ TutorInfo _$TutorInfoFromJson(Map<String, dynamic> json) => TutorInfo(
       isNative: json['isNative'] as bool?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
+      avatar: json['avatar'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$TutorInfoToJson(TutorInfo instance) => <String, dynamic>{
       'id': instance.id,
+      'avatar': instance.avatar,
+      'name': instance.name,
       'userId': instance.userId,
       'video': instance.video,
       'bio': instance.bio,

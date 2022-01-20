@@ -53,11 +53,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   icon: Icons.show_chart_rounded,
                   onTap: viewBookingHistory,
                 ),
-                SettingItemButton(
-                  title: 'Session History',
-                  icon: Icons.history_rounded,
-                  onTap: viewSessionHistory,
-                ),
+                // SettingItemButton(
+                //   title: 'Session History',
+                //   icon: Icons.history_rounded,
+                //   onTap: viewSessionHistory,
+                // ),
                 SettingItemButton(
                   title: 'Advanced Settings',
                   icon: Icons.settings_applications_outlined,

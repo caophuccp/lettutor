@@ -15,11 +15,22 @@ class LessonCardView extends StatelessWidget {
     this.joinMeeting,
     this.directMessage,
     this.countdown = false,
+    this.review = '',
+    this.mark,
+    required this.tutorAvatar,
+    required this.tutorName,
+    required this.startTime,
+    required this.lessionTime,
+    required this.request,
   }) : super(key: key);
-  final tutorNameTest = 'April Corpuz';
-  final tutorEmailTest = 'aprilcorpuz@email.com';
-  final tutorAvatarTest =
-      'https://dev.api.lettutor.com/avatar/3b994227-2695-44d4-b7ff-333b090a45d4avatar1632047402615.jpg';
+
+  final String tutorName;
+  final String tutorAvatar;
+  final DateTime startTime;
+  final String lessionTime;
+  final String request;
+  final String review;
+  final double? mark;
 
   final EdgeInsetsGeometry? margin;
   final bool showTutorReview;
@@ -28,6 +39,15 @@ class LessonCardView extends StatelessWidget {
   final void Function()? onCancel;
   final void Function()? joinMeeting;
   final void Function()? directMessage;
+
+  String get joinMeetingButtonText {
+    final now = DateTime.now();
+    if (startTime.isAfter(now)) {
+      final seconds = startTime.difference(now).inSeconds;
+      return 'Start in $seconds seconds';
+    }
+    return 'Join Meeting';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,36 +75,44 @@ class LessonCardView extends StatelessWidget {
         runSpacing: SpacingValue.large,
         children: [
           TutorInfoHeader(
-            tutorAvatar: tutorAvatarTest,
-            tutorName: tutorNameTest,
-            rating: 4.8,
+            tutorAvatar: tutorAvatar,
+            tutorName: tutorName,
+            rating: null,
           ),
           Text(
-            'Lesson Time: 07:00-07:25',
+            'Lesson Time: $lessionTime',
             style: TextStyles.subtitle1SemiBold,
           ),
-          TextExpander(
-            title: 'Request for lesson',
-            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-          ),
-          if (showTutorReview)
+          if (request.isNotEmpty)
+            TextExpander(
+              title: 'Request for lesson',
+              content: request,
+              isExpanded: true,
+            ),
+          if (mark != null)
+            TextExpander(
+              title: 'Mark',
+              content: mark!.toStringAsFixed(0),
+              isExpanded: true,
+            ),
+          if (showTutorReview && review.isNotEmpty)
             TextExpander(
               title: 'Review from tutor',
-              content:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+              content: review,
+              isExpanded: true,
             ),
           Wrap(
             runSpacing: SpacingValue.medium,
             children: [
-              if (directMessage != null)
-                BarButton(
-                  child: Text('Direct Message'),
-                  onPressed: directMessage,
-                  height: 40,
-                ),
+              // if (directMessage != null)
+              //   BarButton(
+              //     child: Text('Direct Message'),
+              //     onPressed: directMessage,
+              //     height: 40,
+              //   ),
               if (joinMeeting != null)
                 BarButton(
-                  child: Text(countdown ? 'Start in 5 seconds' : 'Join Meeting'),
+                  child: Text(joinMeetingButtonText),
                   onPressed: joinMeeting,
                   height: 40,
                 ),
