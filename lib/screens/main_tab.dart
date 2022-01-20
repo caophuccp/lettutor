@@ -14,7 +14,7 @@ class MainTab extends StatefulWidget {
 }
 
 /// This is the private State class that goes with MyStatefulWidget.
-class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin{
+class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
   TabController? _controller;
 
@@ -22,7 +22,10 @@ class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin{
   void initState() {
     super.initState();
 
-    _controller = TabController(length: 5, vsync: this);
+    _controller = TabController(length: 4, vsync: this);
+    _controller?.addListener(() {
+      _selectedIndex = _controller?.index ?? 0;
+    });
   }
 
   void _onItemTapped(int index) {
@@ -36,12 +39,13 @@ class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     return Scaffold(
       body: TabBarView(
+        physics: NeverScrollableScrollPhysics(),
         controller: _controller,
         children: [
           HomeScreen(),
           UpcomingScreen(),
           TutorsScreen(),
-          DocumentsScreen(),
+          // DocumentsScreen(),
           SettingsScreen(),
         ],
       ),
@@ -63,10 +67,10 @@ class _MainTabState extends State<MainTab> with SingleTickerProviderStateMixin{
             icon: Icon(Icons.speaker_outlined),
             label: 'Tutors',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_rounded),
-            label: 'E-Book',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.menu_book_rounded),
+          //   label: 'E-Book',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',

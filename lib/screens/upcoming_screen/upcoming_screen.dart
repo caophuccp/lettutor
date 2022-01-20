@@ -21,7 +21,8 @@ class UpcomingScreen extends StatefulWidget {
   _UpcomingScreenState createState() => _UpcomingScreenState();
 }
 
-class _UpcomingScreenState extends State<UpcomingScreen> with AutomaticKeepAliveClientMixin{
+class _UpcomingScreenState extends State<UpcomingScreen>
+    with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -56,7 +57,7 @@ class _UpcomingScreenState extends State<UpcomingScreen> with AutomaticKeepAlive
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    
+
     return ChangeNotifierProvider.value(
       value: vm,
       child: Consumer<UpcomingScreenVM>(builder: (_, __, ___) {
@@ -109,8 +110,8 @@ class _UpcomingScreenState extends State<UpcomingScreen> with AutomaticKeepAlive
     }
 
     return LMRListView(
-      slivers: List.generate(items.length * 2, (index) {
-        final groupIndex = index ~/ 2;
+      slivers: List.generate(items.length, (index) {
+        final groupIndex = index;
         final item = items[groupIndex];
 
         return SliverStickyHeader(

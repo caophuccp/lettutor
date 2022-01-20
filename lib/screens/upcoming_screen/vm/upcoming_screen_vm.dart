@@ -131,7 +131,9 @@ class UpcomingScreenVM extends ChangeNotifier {
       }
     }
 
-    groups.add(BookingDateGroup(date: date, booking: bid));
+    if (bid.isNotEmpty) {
+      groups.add(BookingDateGroup(date: date, booking: bid));
+    }
     bookedGroups = groups;
 
     notifyListeners();
