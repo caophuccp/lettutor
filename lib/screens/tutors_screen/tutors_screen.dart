@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/components/lmr_list_view.dart';
 import 'package:lettutor/components/speciality_view.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
+import 'package:lettutor/extensions/navigate_extensions.dart';
 import 'package:lettutor/extensions/snack_bar_extension.dart';
 import 'package:lettutor/models/tutors/tutor.dart';
+import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/screens/tutors_screen/vm/tutors_screen_vm.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
@@ -191,7 +193,7 @@ class _TutorsScreenState extends State<TutorsScreen> {
               tutorName: tutor.name ?? '',
               tutorAvatar: tutor.avatar ?? '',
               introduction: tutor.bio ?? '',
-              rating: 4.8,
+              rating: tutor.rating,
               specialities: tutor.specialties?.split(',') ?? [],
             );
           },
@@ -213,8 +215,9 @@ class _TutorsScreenState extends State<TutorsScreen> {
   }
 
   void viewTutorProfile(Tutor tutor) {
-    // navigate(TutorProfileScreen(
-    //   tutor: tutor,
-    // ));
+    navigate(TutorProfileScreen(
+      tutorId: tutor.id,
+      tutor: tutor,
+    ));
   }
 }

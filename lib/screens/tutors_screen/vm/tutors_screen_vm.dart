@@ -41,7 +41,11 @@ class TutorsScreenVM extends ChangeNotifier {
       print(e);
       print(s);
       errorMessage = e.toString();
+    } finally {
+      client?.close();
+      client = null;
     }
+    
     notifyListeners();
   }
 
@@ -70,6 +74,9 @@ class TutorsScreenVM extends ChangeNotifier {
       print(e);
       print(s);
       errorMessage = e.toString();
+    } finally {
+      client?.close();
+      client = null;
     }
 
     notifyListeners();
@@ -102,7 +109,11 @@ class TutorsScreenVM extends ChangeNotifier {
       print(e);
       print(s);
       errorMessage = e.toString();
+    } finally {
+      client?.close();
+      client = null;
     }
+
     notifyListeners();
   }
 
@@ -147,7 +158,11 @@ class TutorsScreenVM extends ChangeNotifier {
       print(e);
       print(s);
       errorMessage = e.toString();
+    } finally {
+      client?.close();
+      client = null;
     }
+
     isSearching = false;
     notifyListeners();
   }

@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/tutor_screen/tutor_info_expanded.dart';
-import 'package:lettutor/models/tutor.dart';
+import 'package:lettutor/extensions/string_extension.dart';
 import 'package:lettutor/styles/consts.dart';
 
 class TutorInfoView extends StatelessWidget {
   TutorInfoView({
     Key? key,
-    required this.tutor,
+    required this.bio,
+    required this.languages,
+    required this.education,
+    required this.experience,
+    required this.interests,
+    required this.profession,
+    required this.specialties,
   }) : super(key: key);
 
-  final Tutor tutor;
+  final String? bio;
+  final String? languages;
+  final String? education;
+  final String? experience;
+  final String? interests;
+  final String? profession;
+  final String? specialties;
 
   @override
   Widget build(BuildContext context) {
@@ -18,31 +30,37 @@ class TutorInfoView extends StatelessWidget {
       children: [
         TutorInfoExpanded(
           title: 'Introduction',
-          content: tutor.bio,
+          content: bio ?? '',
         ),
         TutorInfoExpanded(
           title: 'Language',
-          content: tutor.languages,
+          content: languages?.toUpperCase() ?? '',
         ),
         TutorInfoExpanded(
           title: 'Education',
-          content: tutor.education,
+          content: education ?? '',
         ),
         TutorInfoExpanded(
           title: 'Experience',
-          content: tutor.experience,
+          content: experience ?? '',
         ),
         TutorInfoExpanded(
           title: 'Intersts',
-          content: '- ' + tutor.interests.replaceAll(', ', '\n- '),
+          content: '- ' + (interests?.replaceAll(', ', '\n- ') ?? ''),
         ),
         TutorInfoExpanded(
           title: 'Profession',
-          content: tutor.profession,
+          content: profession ?? '',
         ),
         TutorInfoExpanded(
           title: 'Specialties',
-          content: '- ' + tutor.specialties.replaceAll(',', '\n- '),
+          // content: '- ' + (tutor.specialties?.replaceAll(',', '\n- ') ?? ''),
+          content: '- ' +
+              (specialties
+                      ?.split(',')
+                      .map((e) => e.toCapitalized())
+                      .join('\n- ') ??
+                  ''),
         ),
       ],
     );

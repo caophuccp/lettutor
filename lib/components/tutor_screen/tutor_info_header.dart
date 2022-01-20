@@ -8,10 +8,12 @@ class TutorInfoHeader extends StatelessWidget {
     Key? key,
     required this.tutorAvatar,
     required this.tutorName,
+    required this.rating,
   }) : super(key: key);
 
   final String tutorAvatar;
   final String tutorName;
+  final double? rating;
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +41,20 @@ class TutorInfoHeader extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        4.8.toStringAsFixed(1),
-                        style: TextStyles.subtitle1SemiBold,
-                      ),
-                      Icon(
-                        Icons.star_rounded,
-                        color: Colors.yellow[600],
-                        size: 20,
-                      )
-                    ],
-                  )
+                  if (rating != null)
+                    Row(
+                      children: [
+                        Text(
+                          rating!.toStringAsFixed(1),
+                          style: TextStyles.subtitle1SemiBold,
+                        ),
+                        Icon(
+                          Icons.star_rounded,
+                          color: Colors.yellow[600],
+                          size: 20,
+                        )
+                      ],
+                    )
                 ],
               ),
               SizedBox(

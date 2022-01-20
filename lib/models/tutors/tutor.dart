@@ -32,6 +32,23 @@ class Tutor {
   int? price;
   bool? isOnline;
 
+  @JsonKey(ignore: true)
+  double? rating;
+
+  void calcAvgRating() {
+    final fbs = feedbacks;
+    if (fbs == null) {
+      return;
+    }
+
+    double sum = 0;
+    for (final fb in fbs) {
+      sum += fb.rating ?? 0;
+    }
+
+    rating = sum / fbs.length;
+  }
+
   Tutor({
     required this.level,
     required this.email,

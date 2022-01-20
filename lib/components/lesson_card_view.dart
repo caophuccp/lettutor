@@ -57,6 +57,7 @@ class LessonCardView extends StatelessWidget {
           TutorInfoHeader(
             tutorAvatar: tutorAvatarTest,
             tutorName: tutorNameTest,
+            rating: 4.8,
           ),
           Text(
             'Lesson Time: 07:00-07:25',

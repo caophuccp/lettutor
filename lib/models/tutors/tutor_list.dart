@@ -6,10 +6,17 @@ part 'tutor_list.g.dart';
 
 @JsonSerializable()
 class TutorList {
-  Tutors? tutors;
-  List<FavoriteTutor>? favoriteTutor;
+  final Tutors? tutors;
+  final List<FavoriteTutor>? favoriteTutor;
 
-  TutorList({this.tutors, this.favoriteTutor});
+  TutorList({this.tutors, this.favoriteTutor}) {
+    final tutorsRows = tutors?.rows;
+    if (tutorsRows != null) {
+      for (final tutor in tutorsRows) {
+        tutor.calcAvgRating();
+      }
+    }
+  }
 
   factory TutorList.fromJson(Map<String, dynamic> json) =>
       _$TutorListFromJson(json);

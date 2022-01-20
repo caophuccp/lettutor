@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/components/lmr_list_view.dart';
 import 'package:lettutor/components/tutor_card_view.dart';
+import 'package:lettutor/extensions/navigate_extensions.dart';
 import 'package:lettutor/extensions/snack_bar_extension.dart';
 import 'package:lettutor/models/tutors/tutor.dart';
 import 'package:lettutor/screens/home_screen/vm/home_screen_vm.dart';
+import 'package:lettutor/screens/tutors_screen/tutor_profile_screen.dart';
 import 'package:lettutor/styles/consts.dart';
 import 'package:lettutor/styles/text_styles.dart';
 import 'package:provider/provider.dart';
@@ -125,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
               tutorName: tutor.name ?? '',
               tutorAvatar: tutor.avatar ?? '',
               introduction: tutor.bio ?? '',
-              rating: 4.8,
+              rating: tutor.rating,
               specialities: (tutor.specialties ?? '').split(','),
             );
           },
@@ -147,11 +149,12 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   }
 
   void showTutorProfile(Tutor tutor) {
-    // navigate(
-    //   TutorProfileScreen(
-    //     tutor: tutor,
-    //   ),
-    // );
+    navigate(
+      TutorProfileScreen(
+        tutorId: tutor.userId,
+        tutor: tutor,
+      ),
+    );
   }
 
   @override

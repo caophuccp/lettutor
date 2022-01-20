@@ -21,7 +21,7 @@ class TutorCardView extends StatelessWidget {
   final String tutorAvatar;
   final String tutorName;
   final String introduction;
-  final double rating;
+  final double? rating;
   final bool favoriteTutor;
   final List<String> specialities;
   final EdgeInsetsGeometry? margin;
@@ -93,19 +93,20 @@ class TutorCardView extends StatelessWidget {
                                     size: 16,
                                   ),
                                 ),
-                              Row(
-                                children: [
-                                  Text(
-                                    rating.toStringAsFixed(1),
-                                    style: TextStyles.subtitle1SemiBold,
-                                  ),
-                                  Icon(
-                                    Icons.star_rounded,
-                                    color: Colors.yellow[600],
-                                    size: 20,
-                                  )
-                                ],
-                              )
+                              if (rating != null)
+                                Row(
+                                  children: [
+                                    Text(
+                                      rating!.toStringAsFixed(1),
+                                      style: TextStyles.subtitle1SemiBold,
+                                    ),
+                                    Icon(
+                                      Icons.star_rounded,
+                                      color: Colors.yellow[600],
+                                      size: 20,
+                                    )
+                                  ],
+                                ),
                             ],
                           ),
                           Container(
